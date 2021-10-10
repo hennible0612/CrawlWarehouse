@@ -6,13 +6,16 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from fake_useragent import UserAgent
 
-from CrawlWarehouse.CrawlWebsite import userinfo
+import userinfo
 
 options = Options()
 ua = UserAgent()
 userAgent = ua.random
 options.add_argument(f'user-agent={userAgent}')
-#browser = webdriver.Chrome(chrome_options=options)
+options.add_experimental_option("prefs", {
+    "profile.default_content_setting_values.notifications": 1
+})
+browser = webdriver.Chrome(chrome_options=options)
 browser = webdriver.Chrome()
 browser.get("https://login.11st.co.kr/auth/front/selleroffice/login.tmall?returnURL=https://soffice.11st.co.kr/view/main")
 browser.find_element_by_id("user-id").send_keys(userinfo.eleven_id)
