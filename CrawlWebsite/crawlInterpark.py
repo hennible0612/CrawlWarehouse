@@ -1,15 +1,8 @@
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from fake_useragent import UserAgent
-import userinfo
 
-options = Options()
-ua = UserAgent()
-userAgent = ua.random
-options.add_argument(f'user-agent={userAgent}')
-#browser = webdriver.Chrome(chrome_options=options)
-browser = webdriver.Chrome()
+
+import userinfo, get_browser
+browser = get_browser.get_browser()
+
 browser.get("https://seller.interpark.com/login")
 
 browser.find_element_by_id("memId").send_keys(userinfo.interpark_id)

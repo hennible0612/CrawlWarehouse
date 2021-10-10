@@ -2,21 +2,11 @@ from time import sleep
 
 from bs4 import BeautifulSoup
 from imap_tools import MailBox
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from fake_useragent import UserAgent
 
-import userinfo
+import userinfo, get_browser
+browser = get_browser.get_browser()
 
-options = Options()
-ua = UserAgent()
-userAgent = ua.random
-options.add_argument(f'user-agent={userAgent}')
-options.add_experimental_option("prefs", {
-    "profile.default_content_setting_values.notifications": 1
-})
-browser = webdriver.Chrome(chrome_options=options)
-browser = webdriver.Chrome()
+
 browser.get("https://login.11st.co.kr/auth/front/selleroffice/login.tmall?returnURL=https://soffice.11st.co.kr/view/main")
 browser.find_element_by_id("user-id").send_keys(userinfo.eleven_id)
 browser.find_element_by_id("passWord").send_keys(userinfo.eleven_pw)

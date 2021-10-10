@@ -22,9 +22,11 @@ from urllib.request import urlopen
 from imap_tools import MailBox
 from bs4 import BeautifulSoup
 import nltk
+import userinfo
 
-username = "*"
-password = '*'
+username = userinfo.gmail_id
+password = userinfo.gmail_pw
+
 mailbox = MailBox("imap.gmail.com", 993)
 mailbox.login(username,password, initial_folder="INBOX")
 
