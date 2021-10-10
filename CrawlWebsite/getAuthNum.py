@@ -1,9 +1,9 @@
-from Google import Create_Service
+from CrawlWarehouse.CrawlWebsite.trash.Google import Create_Service
 import base64
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-CLIENT_SECRET_FILE = 'credentials.json.json'
+CLIENT_SECRET_FILE = 'trash/credentials.json'
 API_NAME = 'GmailAuth'
 API_VERSION = 'v1'
 SCOPES = ['https://mail.google.com/']

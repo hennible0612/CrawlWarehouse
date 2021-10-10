@@ -1,40 +1,40 @@
 
-from __future__ import print_function
-import os.path
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-# If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
+
+# import imaplib
+# import email
+# from email.header import decode_header
+# import webbrowser
+# import os
+#
+
+#
+# def clean(text):
+#     #폴더 만들기 위해서 이름 깔끔하게
+#     return "".join(c if c.isalnum() else "_" for c in text)
+#
+# # SSL 로 imap4 생성
+# imap  = imaplib.IMAP4_SSL("imap.gmail.com") #ssl 인터넷에서 데이터 안전하게 전송하기 위해 프로토콜
+# #로그인
+# imap.login(username, password)
+# imap.select("inbox") #도착한 메일
+from urllib.request import urlopen
+
+from imap_tools import MailBox
+from bs4 import BeautifulSoup
+import nltk
+
+username = "*"
+password = '*'
+mailbox = MailBox("imap.gmail.com", 993)
+mailbox.login(username,password, initial_folder="INBOX")
+
+for msg in mailbox.fetch('(FROM admin@11st.co.kr UNSEEN)', limit=10, reverse=True):
+    soup = BeautifulSoup(msg.html,"html")
+    data1 = soup.find("td",text="인증번호")
+    data2 = data1.find_next_sibling("td").getText()
+    data2 = data2.strip("[")
+    data2 = data2.strip("]")
+    print(data2)
 
 
-def search_messages(service, user_id, search_string):
-    try:
-        a = 1
-    except:
-
-
-def get_service():
-
-    creds = None
-    # The file token.json stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first
-    # time.
-    if os.path.exists('token.json'):
-        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
-    # If there are no (valid) credentials available, let the user log in.
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
-        # Save the credentials for the next run
-        with open('token.json', 'w') as token:
-            token.write(creds.to_json())
-
-    service = build('gmail', 'v1', credentials=creds)
-
-    return service
+mailbox.logout()
