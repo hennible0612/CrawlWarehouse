@@ -11,6 +11,6 @@ def get_browser():
         "profile.default_content_setting_values.notifications": 1
     })
     browser = webdriver.Chrome(chrome_options=options)
-
+    #firefox = webdriver.Firefox()
     return browser
 

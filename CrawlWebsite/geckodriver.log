@@ -1,0 +1,19 @@
+1633928955338	geckodriver	INFO	Listening on 127.0.0.1:52447
+1633928958367	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\henni\\AppData\\Local\\Temp\\rust_mozprofileJDOExk"
+1633928959482	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\henni\\AppData\\Local\\Temp\\rust_mozprofileJDOExk\\search.json.mozlz4", (void 0)))
+1633928962751	Marionette	INFO	Listening on port 56175
+1633928963160	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://nid.naver.com/login/js/bvsd.1.3.4.min.js, line 16: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://nid.naver.com/login/js/bvsd.1.3.4.min.js, line 16: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1633928965088	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+1633928965170	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+1633928965609	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript warning: https://sell.smartstore.naver.com/app.js?52b94a443870ff4de01f, line 1: unreachable code after return statement
+JavaScript warning: https://sell.smartstore.naver.com/app.js?52b94a443870ff4de01f, line 1: unreachable code after return statement
+JavaScript warning: https://sell.smartstore.naver.com/app.js?52b94a443870ff4de01f, line 1: unreachable code after return statement
+JavaScript warning: https://sell.smartstore.naver.com/app.js?52b94a443870ff4de01f, line 1: unreachable code after return statement
+JavaScript warning: https://editor-static.pstatic.net/v/basic/1.24.0/se.viewer.js?v=, line 43: WebGL context was lost.
+1633928972620	Marionette	INFO	Stopped listening on port 56175
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
