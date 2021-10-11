@@ -1,8 +1,5 @@
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from fake_useragent import UserAgent
-import userinfo
+from time import sleep
+from imap_tools import MailBox
 
 import userinfo, get_browser
 browser = get_browser.get_browser()
@@ -11,3 +8,4 @@ browser.get("https://spc.tmon.co.kr/member/login?return_url=%2Fdelivery%3Fmain_d
 browser.find_element_by_id("form_id").send_keys(userinfo.tmon_id)
 browser.find_element_by_id("form_password").send_keys(userinfo.tmon_pw)
 browser.find_element_by_xpath('//*[@id="content"]/div[1]/form/fieldset/ul/li[7]/button').click()
+

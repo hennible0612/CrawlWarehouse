@@ -11,10 +11,10 @@ browser.get("https://login.11st.co.kr/auth/front/selleroffice/login.tmall?return
 browser.find_element_by_id("user-id").send_keys(userinfo.eleven_id)
 browser.find_element_by_id("passWord").send_keys(userinfo.eleven_pw)
 browser.find_element_by_id("loginbutton").click()
-browser.find_element_by_xpath('//*[@id="ar-auth_type_list"]/ul/li[2]/div/label/span').click()
+browser.find_element_by_xpath('/html/body/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/label[1]').click()
 browser.find_element_by_xpath('//*[@id="div_otp_wrapper"]/button').click()
 
-sleep(30)
+sleep(40)
 #인증번호
 username = userinfo.gmail_id
 password = userinfo.gmail_pw

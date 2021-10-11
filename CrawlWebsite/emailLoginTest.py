@@ -21,7 +21,6 @@ from urllib.request import urlopen
 
 from imap_tools import MailBox
 from bs4 import BeautifulSoup
-import nltk
 import userinfo
 
 username = userinfo.gmail_id
