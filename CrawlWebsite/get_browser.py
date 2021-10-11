@@ -13,4 +13,3 @@ def get_browser():
     browser = webdriver.Chrome(chrome_options=options)
     #firefox = webdriver.Firefox()
     return browser
-

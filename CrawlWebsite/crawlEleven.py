@@ -43,3 +43,9 @@ mailbox.logout()
 
 browser.find_element_by_id("auth_num_02").send_keys(authNum)
 browser.find_element_by_xpath('//*[@id="div_otp_wrapper"]/div/button').click()
+
+#데이터 가져오기
+browser.get('https://soffice.11st.co.kr/view/35930?preViewCode=GOOD202&orgMenuNo=35930')
+html = browser.page_source
+soup = BeautifulSoup(html, 'html.parser')
+orderers = soup.select_one('##row0dataGrid > div:nth-child(1)')

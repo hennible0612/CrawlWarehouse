@@ -45,3 +45,10 @@ notice.dismiss()
 
 # 비밀번호 다음에 변경하기
 browser.find_element_by_xpath('//*[@id="reactapp"]/div/div[2]/div/button[2]').click()
+
+#데이터 가져오기
+browser.find_element_by_xpath('//*[@id="requestCancelCount"]').click()
+html = browser.page_source
+soup = BeautifulSoup(html, 'html.parser')
+orderers = soup.select_one('#orderInfoGrid > div.objbox > table > tbody > tr.ev_dhx_web')
+

@@ -1,4 +1,6 @@
 from time import sleep
+
+from bs4 import BeautifulSoup
 from imap_tools import MailBox
 
 import userinfo, get_browser
@@ -9,3 +11,10 @@ browser.find_element_by_id("form_id").send_keys(userinfo.tmon_id)
 browser.find_element_by_id("form_password").send_keys(userinfo.tmon_pw)
 browser.find_element_by_xpath('//*[@id="content"]/div[1]/form/fieldset/ul/li[7]/button').click()
 
+#데이터가져오기
+browser.find_element_by_xpath('//*[@id="summayD1"]').click()
+browser.find_element_by_xpath('//*[@id="searchForm"]/fieldset/table/tbody/tr[1]/td/div[4]/div/label[2]').click()
+browser.find_element_by_xpath('//*[@id="btnSearch"]').click()
+html = browser.page_source
+soup = BeautifulSoup(html, 'html.parser')
+orderers = soup.select_one('#__grid_DeliveryGrid > div.objbox')

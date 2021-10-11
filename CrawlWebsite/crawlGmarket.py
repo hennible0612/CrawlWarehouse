@@ -10,6 +10,7 @@ browser.get('https://www.esmplus.com/Escrow/Delivery/Sending?status=1050&type=N&
 html = browser.page_source
 soup = BeautifulSoup(html,'html.parser')
 
+#데이터가져오기
 firstSeparator =soup.select_one('#dataGrid').getText()
 print(firstSeparator)
 secondSeparator = soup.select_one('#gridPanel > div:nth-child(2) > div.grid_table_type2.sb-grid-dct').getText()
