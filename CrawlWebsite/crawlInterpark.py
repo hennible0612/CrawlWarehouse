@@ -18,3 +18,6 @@ browser.find_element_by_xpath('//*[@id="btnSearch"]').click()
 html = browser.page_source
 soup = BeautifulSoup(html, 'html.parser')
 orderers = soup.select_one('//*[@id="DataGrid"]/div/canvas')
+
+
+
