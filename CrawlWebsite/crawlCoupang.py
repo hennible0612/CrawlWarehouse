@@ -1,3 +1,5 @@
+from time import sleep
+
 from bs4 import BeautifulSoup
 import userinfo, get_browser
 
@@ -9,6 +11,7 @@ browser.find_element_by_id("userID").send_keys(userinfo.coupang_id)
 browser.find_element_by_id("userPWD").send_keys(userinfo.coupang_pw)
 browser.find_element_by_xpath('//*[@id="btnLogin"]').click()
 
+sleep(2)
 
 #!!!!! 쿠팡은 따로 테이블이 없음 바로 html 파일 가져오면됨
 

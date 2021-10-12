@@ -39,6 +39,8 @@ for msg in mailbox.fetch('(FROM admin@11st.co.kr UNSEEN)', limit=10, reverse=Tru
     data2 = data2.strip("]")
     authNum = data2
 
+
+
 mailbox.logout()
 
 browser.find_element_by_id("auth_num_02").send_keys(authNum)
