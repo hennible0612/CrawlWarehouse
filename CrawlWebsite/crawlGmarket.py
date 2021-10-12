@@ -14,12 +14,10 @@ soup = BeautifulSoup(html,'html.parser')
 
 sleep(2)
 #데이터가져오기
-firstSeparator =soup.select_one('#dataGrid').getText()
-print(firstSeparator)
-secondSeparator = soup.select_one('#gridPanel > div:nth-child(2) > div.grid_table_type2.sb-grid-dct').getText()
-print(secondSeparator)
+data =soup.select_one('#dataGrid').getText()
+print(data)
 
-f = open("gmarket.txt",'w', encoding="utf8")
-f.write(firstSeparator)
-f.write(secondSeparator)
+
+f = open("gmarketTest.txt",'w', encoding="utf8")
+f.write(data)
 f.close()
