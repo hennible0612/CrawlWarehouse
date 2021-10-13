@@ -15,12 +15,12 @@ sleep(1)
 browser.find_element_by_xpath('//*[@id="kakaoServiceLogo"]').click()
 browser.find_element_by_xpath('//*[@id="mArticle"]/div[2]/div[2]/div[1]/button').click()
 
-#데이터가져오기
-browser.find_element_by_xpath('//*[@id="mArticle"]/div/div[2]/wf-view-dashboard-shipping/div/div/ul/li[2]/a').click()
-html = browser.page_source
-soup = BeautifulSoup(html, 'html.parser')
-orderers = soup.select_one('//*[@id="page-grid-box_AX_tbody"]')
-
+# #데이터가져오기
+# browser.find_element_by_xpath('//*[@id="mArticle"]/div/div[2]/wf-view-dashboard-shipping/div/div/ul/li[2]/a').click()
+# html = browser.page_source
+# soup = BeautifulSoup(html, 'html.parser')
+# orderers = soup.select_one('//*[@id="page-grid-box_AX_tbody"]')
+#
 
 
 

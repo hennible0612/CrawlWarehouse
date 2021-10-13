@@ -17,7 +17,7 @@ sleep(2)
 data =soup.select_one('#dataGrid').getText()
 print(data)
 
-
-f = open("gmarketTest.txt",'w', encoding="utf8")
-f.write(data)
-f.close()
+# -------  크롤된 정보 text에 적기
+# f = open("gmarketUserInfo.txt",'w', encoding="utf8")
+# f.write(data)
+# f.close()
