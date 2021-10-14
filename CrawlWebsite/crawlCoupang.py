@@ -13,8 +13,12 @@ browser.find_element_by_xpath('//*[@id="btnLogin"]').click()
 sleep(2)
 
 #주문목록가져오기
-x = dt.datetime.now()
-url = x.strftime("https://wing.coupang.com/tenants/sfl-portal/delivery/management?deliverStatus=ACCEPT&startDate=%Y-%m-%d&endDate=%Y-%m-%d")
+now = dt.datetime.now()
+week = dt.datetime.now() -dt.timedelta(weeks=1)
+url = 'https://wing.coupang.com/tenants/sfl-portal/delivery/management?deliverStatus=ACCEPT&startDate='
+url += week.strftime('%Y-%m-%d')
+url += '&endDate='
+url += '%Y-%m-%d'
 browser.get(url)
 
 #지난 7일 클릭

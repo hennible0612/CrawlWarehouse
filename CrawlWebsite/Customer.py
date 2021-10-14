@@ -1,20 +1,25 @@
 class Customer:
-    def __init__(self, mallName, orderNum, invoiceNum, recipientName, recipientNum, recipientHnum, address, zipCode, shipMessage, orderName, orderCode, orderAmount, price, shipFee, orderTotal, option):
+    def __init__(self, mall, ordernum, invoicenum, recipientcellnum, recipientphonenum, recipientaddress,
+                 postalnum, message, ordername, ordercode, quantity, option, unitprice, postprice, totalprice):
+        self.mall = mall
+        self.ordernum = ordernum
+        self.invoicenum = invoicenum
+        self.recipientcellnum = recipientcellnum
+        self.recipientphonenum = recipientphonenum
+        self.recipientaddress = recipientaddress
+        self.postalnum = postalnum
+        self.messafe = message
+        self.ordername = ordername
+        self.ordercode = ordercode
+        self.quantity = quantity
         self.option = option
-        self.price = price
-        self.orderTotal = orderTotal
-        self.shipFee = shipFee
-        self.orderAmount = orderAmount
-        self.orderCode = orderCode
-        self.orderName = orderName
-        self.zipCode = zipCode
-        self.address = address
-        self.recipientHnum = recipientHnum
-        self.recipientNum = recipientNum
-        self.recipientName = recipientName
-        self.invoiceNum = invoiceNum
-        self.orderNum = orderNum
-        self.mallName = mallName
-        self.shipMessage = shipMessage
+        self.unitprice = unitprice
+        self.postprice = postprice
+        self.totalprice = totalprice
+
+
+
+
+
 
 

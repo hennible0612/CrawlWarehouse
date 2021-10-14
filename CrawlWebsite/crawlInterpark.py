@@ -7,6 +7,7 @@ import datetime as dt
 import userinfo, get_browser
 browser = get_browser.get_browser()
 
+
 #로그인
 browser.get("https://seller.interpark.com/login")
 browser.find_element_by_id("memId").send_keys(userinfo.interpark_id)
