@@ -18,25 +18,25 @@ browser.find_element_by_xpath("/html/body/div/div[2]/div[1]/div/div[1]/div[2]/di
 browser.find_element_by_xpath('//*[@id="sendAuth"]').click()
 
 
-sleep(20)
-#인증번호
-username = userinfo.gmail_id
-password = userinfo.gmail_pw
-mailbox = MailBox("imap.gmail.com", 993)
-mailbox.login(username,password, initial_folder="INBOX")
-authNum = 0;
-
-for msg in mailbox.fetch('(FROM no-reply@wemakeprice.com UNSEEN)', limit=10, reverse=True):
-    soup = BeautifulSoup(msg.html,"html")
-    data1 = soup.select_one('body > div > table > tbody > tr:nth-child(5) > td > table > tbody > tr:nth-child(1) > td:nth-child(3) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(4) > td:nth-child(2) > strong')
-    authNum = data1.getText()
-
-mailbox.logout()
-
-#인증번호 입력
-browser.find_element_by_xpath('//*[@id="authCode"]').click()
-browser.find_element_by_xpath('//*[@id="authCode"]').send_keys(authNum)
-browser.find_element_by_xpath('//*[@id="checkAuth"]').click()
+# sleep(20)
+# #인증번호
+# username = userinfo.gmail_id
+# password = userinfo.gmail_pw
+# mailbox = MailBox("imap.gmail.com", 993)
+# mailbox.login(username,password, initial_folder="INBOX")
+# authNum = 0;
+#
+# for msg in mailbox.fetch('(FROM no-reply@wemakeprice.com UNSEEN)', limit=10, reverse=True):
+#     soup = BeautifulSoup(msg.html,"html")
+#     data1 = soup.select_one('body > div > table > tbody > tr:nth-child(5) > td > table > tbody > tr:nth-child(1) > td:nth-child(3) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(4) > td:nth-child(2) > strong')
+#     authNum = data1.getText()
+#
+# mailbox.logout()
+#
+# #인증번호 입력
+# browser.find_element_by_xpath('//*[@id="authCode"]').click()
+# browser.find_element_by_xpath('//*[@id="authCode"]').send_keys(authNum)
+# browser.find_element_by_xpath('//*[@id="checkAuth"]').click()
 
 sleep(2)
 #알림창 dismiss

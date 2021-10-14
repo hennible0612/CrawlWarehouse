@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import userinfo, get_browser
 import datetime as dt
 
-
 browser = get_browser.get_browser()
 
 #브라우저 로그인
