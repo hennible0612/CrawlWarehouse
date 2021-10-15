@@ -21,42 +21,40 @@ sleep(2)
 data = soup.select_one('#dataGrid > table > tbody')
 tr = data.findAll("tr") # tr이 주문자 개수
 length = len(tr) #테이블의 사람들 개수
+tr = data.find('tr', attrs={"class":"even"})
 
-list = [] #고객 정보들
+
+testList = [0] * 70
+sleep(3)
+tbody = soup.select_one('tbody.sb-grid-results')
+info = tbody.select('tr:nth-child(1)>td')
 cnt = 0
-orderer = data.find('tr', attrs={"class":"even"})
-for i in range(length):
-    if(cnt == 0):
-        list.append(orderer.getText())
-        cnt += 1
-    else:
-        orderer = orderer.next_sibling
-        list.append(orderer.getText())
-
-for i in range(length):
-    print(list[i])
-    print("-"*100)
-
-soup = BeautifulSoup(list[0], 'html.parser')
+for i in info:
+    testList[cnt] = i.get_text() + ','
+    cnt += 1
+print("-"*100)
+for i in range(70):
+    print(testList[i])
 
 
+# list = [] #고객 정보들
+# cnt = 0
 # orderer = data.find('tr', attrs={"class":"even"})
-# print(orderer)
 #
-#
-# for i in range(length-1):
-#     print("*"*100)
-#     orderer = orderer.next_sibling
-#     print(orderer)
-
-# orderer = [soup.find_all("td")[n].string for n in range(length)]
-# print(orderer)
-
-# children = data.find("tr").findAll("td") #자식 찾기
-# print(children)
-# children = data.find("tr")[1].findAll("td")
-# print(children)
 # for i in range(length):
+#     if(cnt == 0):
+#         list.append(orderer.getText())
+#         cnt += 1
+#     else:
+#         orderer = orderer.next_sibling
+#         list.append(orderer.getText())
+#
+# for i in range(length):
+#     print("-"*100)
+#     print(list[i])
+
+
+
 
 
 

@@ -20,17 +20,33 @@ def crawlEsm():
     sleep(2)
 
     # 데이터가져오기
-    data = soup.select_one('#dataGrid').getText()
+    data = soup.select_one('#dataGrid > table > tbody')
+    tr = data.findAll("tr")  # tr이 주문자 개수
+    length = len(tr)  # 테이블의 사람들 개수
+
     sleep(2)
     if (data == "    조회된 데이터가 없습니다."):
         print("ESM 에서 새로운 주문이 없습니다.")
+        return False
     else:
-        print("주문이 있습니다.")
+        print(length + "개의 주문이 있습니다.")
+        list = []  # 고객 정보들
+        cnt = 0
+        orderer = data.find('tr', attrs={"class": "even"})
+        for i in range(length):
+            if (cnt == 0):
+                list.append(orderer.getText())
+                cnt += 1
+            else:
+                orderer = orderer.next_sibling
+                list.append(orderer.getText())
+        return list
 
-    f = open("esmUserInfo.txt", 'w', encoding="utf8")
-    f.write(data)
-    f.close()
-    browser.close()
+
+
+
+
+
 
 
 
