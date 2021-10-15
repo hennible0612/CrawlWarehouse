@@ -23,12 +23,12 @@ week = dt.datetime.now() -dt.timedelta(weeks=1)
 
 # #데이터 가져오기
 sleep(2)
-url = 'https://seller.interpark.com/api/orders/acknowledge?orderSendStep=acknowledge&orderStatus=50&detailedSearchType=&detailedSearchValue=&searchPeriodType=orderDate&startDate=2021-09-13T15%3A00%3A00Z&endDate=2021-10-14T14%3A59%3A00Z&page=1&size=30'
-url = 'https://seller.interpark.com/api/orders/acknowledge?orderSendStep=acknowledge&orderStatus=50&detailedSearchType=&detailedSearchValue=&searchPeriodType=orderDate&startDate='
+url = 'https://seller.interpark.com/api/orders/acknowledge?orderSendStep=releasedForShipment&orderStatus=40&detailedSearchType=&detailedSearchValue=&searchPeriodType=orderDate&startDate=2021-09-14T15%3A00%3A00Z&endDate=2021-10-15T14%3A59%3A00Z&page=1&size=30'
+url = 'https://seller.interpark.com/api/orders/acknowledge?orderSendStep=releasedForShipment&orderStatus=40&detailedSearchType=&detailedSearchValue=&searchPeriodType=orderDate&startDate='
 url += week.strftime('%Y-%m-%d')
 url += 'T15%3A00%3A00Z&endDate='
 url += now.strftime('%Y-%m-%d')
-url += 'T14%3A59%3A00Z&page=1&size=30'
+url += 'T14%3A59%3A00Z&page=1&size=500'
 print(url)
 
 browser.get(url)

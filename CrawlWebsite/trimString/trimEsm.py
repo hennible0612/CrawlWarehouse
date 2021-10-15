@@ -2,4 +2,3 @@ data = '  G(jdwcoupang)2021-10-12 15:34:07 3604807211광남초등학교gwa******
 
 data = data.strip()
 print(data)
-
