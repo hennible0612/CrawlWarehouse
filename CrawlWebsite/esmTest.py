@@ -19,14 +19,18 @@ sleep(2)
 
 # 데이터가져오기
 data = soup.select_one('#dataGrid > table > tbody')
+
 tr = data.findAll("tr") # tr이 주문자 개수
 length = len(tr) #테이블의 사람들 개수
-tr = data.find('tr', attrs={"class":"even"})
 
+# tr = data.find('tr', attrs={"class":"even"})
 
+#배열에 저장
 testList = [0] * 70
 sleep(3)
 tbody = soup.select_one('tbody.sb-grid-results')
+
+#배열에 저장
 info = tbody.select('tr:nth-child(1)>td')
 cnt = 0
 for i in info:
@@ -35,6 +39,9 @@ for i in info:
 print("-"*100)
 for i in range(70):
     print(testList[i])
+
+#a = 2
+#info = tbody.select('tr:nth-child(%d)>td' %a)
 
 
 # list = [] #고객 정보들
