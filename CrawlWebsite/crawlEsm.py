@@ -40,6 +40,7 @@ def crawlEsm():
 
 def get_info(tbody, length, soup):
     testList = [[0]*62 for _ in range(62)]*length # testList = [[0]*62] * length
+    # testList = [[0]*length for _ in range(length)]*length # testList = [[0]*62] * length
     tbody = soup.select_one('tbody.sb-grid-results')
     cnt = 1 #tr 순서 선택
     sleep(2)
@@ -49,17 +50,21 @@ def get_info(tbody, length, soup):
         cnt += 1  # 다음 tr 을위해 증가
         for j in info:
             testList[i][jcount] = j.get_text() + ',' #배열에 삽입
-            print(testList[i][jcount]) #리스트에 들어간 value들 표시
+            # print(testList[i][jcount]) #리스트에 들어간 value들 표시
             jcount += 1
-        print("-"*100)
-    for i in range(length): #2차원 배열 체크용
-        for j in range(62):
-            print(i,j)
-            print(testList[i][j])
-        print("-"*100)
+    #     print("-"*100)
+    # for i in range(length): #2차원 배열 체크용
+    #     for j in range(62):
+    #         print(i,j)
+    #         print(testList[i][j])
+    #     print("-"*100)
 
-    df = pd.DataFrame.from_records(testList)
-    print(df)
-    print("-" * 100)
+    df = pd.DataFrame(testList)
+    df.to_csv('esm.csv', index = True, header = True, na_rep = '-')
+
+
+
+
+
 
 
