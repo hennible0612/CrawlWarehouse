@@ -29,15 +29,25 @@ url += week.strftime('%Y-%m-%d')
 url += 'T15%3A00%3A00Z&endDate='
 url += now.strftime('%Y-%m-%d')
 url += 'T14%3A59%3A00Z&page=1&size=500'
-print(url)
+
+#--------------------------건들 x ---------------
+url ='https://seller.interpark.com/api/orders/delivery?orderStatus=stepShipping&detailedSearchType=&detailedSearchValue=&buyConfirmHoldYn=all&searchPeriodType=sendDate&startDate=2021-09-14T15%3A00%3A00Z&endDate=2021-10-15T14%3A59%3A00Z&page=1&size=30'
 
 browser.get(url)
 sleep(2)
 
 html = browser.page_source
 soup = BeautifulSoup(html, 'html.parser')
+json = soup.select_one('body > pre')
+txt = json.get_text()
 
-print(soup)
+#json
+import json
+print(txt)
+
+with open("info.json","w") as f:
+    json.dump(txt, f)
+
 
 
 
