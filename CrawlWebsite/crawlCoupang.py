@@ -20,7 +20,7 @@ url += '&endDate='
 url += now.strftime('%Y-%m-%d')
 browser.get(url)
 #------------------------------------------------건들지 위로------------------------------------------------------------------------------------#
-browser.find_element_by_xpath('//*[@id="wing-top-body"]/div/div[2]/div[4]/ul/li[5]/article').click() #배송완료 클릭
+# browser.find_element_by_xpath('//*[@id="wing-top-body"]/div/div[2]/div[4]/ul/li[5]/article').click() #배송완료 클릭
 sleep(4)
 
 html = browser.page_source
@@ -32,7 +32,7 @@ tbody = soup.select_one('#wing-top-body > div > div.search-table > div > div:nth
 length = len(tbody.findAll("tr"))
 
 
-cnt = 0
+cnt = 1
 count = 0
 testList = [0] * 40
 for i in range(length):
