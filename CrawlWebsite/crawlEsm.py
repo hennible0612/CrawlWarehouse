@@ -10,26 +10,28 @@ stack = 0  #
 def crawlEsm():
     # 로그인
     global stack
-    # try:
     browser = get_browser.get_browser()
-    browser.get("https://www.esmplus.com/Member/SignIn/LogOn")
-    browser.find_element_by_id("Id").send_keys(userinfo.gmarket_id)
-    browser.find_element_by_id("Password").send_keys(userinfo.gmarket_pw)
-    browser.find_element_by_id("btnLogOn").click()
-    print('로그인 성공')
+    try:
+        browser.get("https://www.esmplus.com/Member/SignIn/LogOn")
+        browser.find_element_by_id("Id").send_keys(userinfo.gmarket_id)
+        browser.find_element_by_id("Password").send_keys(userinfo.gmarket_pw)
+        browser.find_element_by_id("btnLogOn").click()
+        print('로그인 성공')
+        sleep(2)
+    except:
+        print("로그인 중 중에러")
+        sleep(2)
+        while(stack <3):
+            print('로그인 다시시도')
+            stack += 1
+            browser.close()
+            sleep(2)
+            crawlEsm()
+            if stack >= 3:
+                print('esm로그인 실패')
+                return False
+                break
     getSoup(browser)
-    # except:
-    #     print("로그인 중 중에러")
-    #     # browser.close()
-    #     while(stack <3):
-    #         print('로그인 다시시도')
-    #         stack += 1
-    #         crawlEsm()
-    #         if stack > 3:
-    #             print('esm로그인 실패')
-    #             return False
-    #             break
-
 
 def Logout(browser):
     browser.get('https://www.esmplus.com/Home/Home')
@@ -81,6 +83,7 @@ def createDf(customer_data, length):
     #         print(i,j)
     #         print(testList[i][j])
     #     print("-"*100)
+
 def createCsv(df):
     df.to_csv('esm.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
 
