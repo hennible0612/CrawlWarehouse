@@ -18,7 +18,7 @@ def crawlEsm():
         print('로그인 성공')
         sleep(2)
     except:
-        print("로그인 중 중에러")
+        print("로그인 중 에러")
         sleep(2)
         while(stack <3):
             print('로그인 다시시도')
@@ -62,20 +62,21 @@ def getData(soup):
 
 
 def createDf(customer_data, length):
-    testList = [[0 for col in range(62)] for row in range(length)]
+    customerList = [[0 for col in range(62)] for row in range(length)]
     cnt = 1  # tr 순서 선택
+    pattern = re.compile(r'\s+')
     sleep(2)
     for i in range(length):
         info = customer_data.select('tr:nth-child(%d)>td' % cnt)  # 첫번째 tr 선택
         jcnt = 0  # 배열에 넣기 위한 count 증가
         cnt += 1  # 다음 tr 을위해 증가
         for j in info:
-            testList[i][jcnt] = j.get_text()  # 배열에 삽입
+            customerList[i][jcnt] = re.sub(pattern,' ',str(j.get_text())).strip() # 배열에 삽입
             # print(testList[i][jcnt]) #리스트에 들어간 value들 표시
             jcnt += 1
 
     column_name = columnname.esmColumnname
-    df = pd.DataFrame(testList, columns=column_name)
+    df = pd.DataFrame(customerList, columns=column_name)
     createCsv(df)
     print(df)
     #     print("-"*100)
