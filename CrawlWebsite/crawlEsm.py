@@ -3,9 +3,8 @@ from bs4 import BeautifulSoup
 import userinfo, get_browser
 import pandas as pd
 import re
-
-stack = 0  #
-
+import columnname
+stack = 0
 
 def crawlEsm():
     # 로그인
@@ -74,7 +73,9 @@ def createDf(customer_data, length):
             testList[i][jcnt] = j.get_text()  # 배열에 삽입
             # print(testList[i][jcnt]) #리스트에 들어간 value들 표시
             jcnt += 1
-    df = pd.DataFrame(testList)
+
+    column_name = columnname.esmColumnname
+    df = pd.DataFrame(testList, columns=column_name)
     createCsv(df)
     print(df)
     #     print("-"*100)
