@@ -28,7 +28,7 @@ def crawlCoupang():
             crawlCoupang()
             if stack >= 3:
                 print('coupang로그인 실패')
-                return False
+                return
                 break
     getSoup(browser)
 
@@ -96,3 +96,4 @@ def createCsv(df):
 #     print("-" * 100)
 
 
+# 체크 주문번호 분리배송 택배사 운송장번호 출고예정일 등록상품명/옵션/수량 수취인/연락처 배송지 배송상태 주문일시 묶음배송번호 주문자명 배송지연안내 접수

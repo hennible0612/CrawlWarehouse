@@ -37,7 +37,6 @@ def Logout(browser):
     browser.find_element_by_xpath('//*[@id="logoff"]/a').click()
     browser.close()
 
-
 def getSoup(browser):
     # 브라우저 html 받기
     # browser.get('https://www.esmplus.com/Escrow/Order/NewOrder?type=N2&menuCode=TDM105') #새주문
@@ -46,7 +45,6 @@ def getSoup(browser):
     soup = BeautifulSoup(browser.page_source, 'html.parser')
     # Logout(browser)
     getData(soup)
-
 
 def getData(soup):
     # 주문 데이터 가져오기
@@ -59,7 +57,6 @@ def getData(soup):
         print('총주문 개수는 : ', total_order)
         customer_data = soup.select_one('tbody.sb-grid-results')  # 결과
         createDf(customer_data, int(total_order))
-
 
 def createDf(customer_data, length):
     customerList = [[0 for col in range(62)] for row in range(length)]
