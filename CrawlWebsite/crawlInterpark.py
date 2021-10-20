@@ -46,12 +46,12 @@ txt = json.get_text()
 
 
 
-# with open('interpark.json','w', encoding='utf-8-sig') as f:
+# with open('interpark.txt','w', encoding='utf-8-sig') as f:
 #     f.write(txt)
 # f.close()
 # sleep(3)
 
 
-pdObj = pd.read_json('interpark.json', orient=str)
-csvData = pdObj.to_csv(index=False)
-print(csvData)
+# pdObj = pd.read_json('interpark.txt', orient=str)
+# csvData = pdObj.to_csv(index=False)
+# print(csvData)
