@@ -1,6 +1,6 @@
 from time import sleep
 from bs4 import BeautifulSoup
-import userinfo, get_browser
+from CrawlWarehouse.CrawlWebsite import get_browser, userinfo
 
 try:
     browser = get_browser.get_browser()

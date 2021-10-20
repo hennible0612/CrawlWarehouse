@@ -1,9 +1,11 @@
 from time import sleep
 from bs4 import BeautifulSoup
-import userinfo, get_browser
+
 import pandas as pd
 import re
-import columnname
+import get_browser, columnname, userinfo
+
+
 stack = 0
 
 def crawlEsm():

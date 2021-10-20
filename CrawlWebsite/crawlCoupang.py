@@ -1,9 +1,9 @@
 from time import sleep
 from bs4 import BeautifulSoup
-import userinfo, get_browser
+import userinfo, columnname, get_browser
 import pandas as pd
 import re
-import columnname
+
 import datetime as dt
 stack = 0
 

@@ -1,8 +1,5 @@
 from time import sleep
 
-from bs4 import BeautifulSoup
-from imap_tools import MailBox
-
 import userinfo, get_browser
 browser = get_browser.get_browser()
 

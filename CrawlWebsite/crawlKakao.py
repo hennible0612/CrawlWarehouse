@@ -1,7 +1,5 @@
 from time import sleep
 
-from bs4 import BeautifulSoup
-
 import userinfo, get_browser
 browser = get_browser.get_browser()
 
