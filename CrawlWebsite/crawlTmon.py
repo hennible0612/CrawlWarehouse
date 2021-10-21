@@ -80,8 +80,8 @@ def createDf(customer_data, length):
             # print(testList[i][jcnt]) #리스트에 들어간 value들 표시
             jcnt += 1
 
-    column_name = columnname.esmColumnname
-    df = pd.DataFrame(customerList, columns=column_name)
+    # column_name = columnname.esmColumnname
+    df = pd.DataFrame(customerList)
     createCsv(df)
     #     print("-"*100)
     # for i in range(length): #2차원 배열 체크용
