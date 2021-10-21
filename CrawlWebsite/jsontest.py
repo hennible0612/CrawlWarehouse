@@ -15,10 +15,16 @@ print("-"*100)
 data1 = data["data"]['orderDeliveries'][0]
 data2 = data["data"]['orderDeliveries'][1]
 
-df = pd.DataFrame.from_records(data1, index=[0])
-df.to_csv('data1.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
-df = pd.DataFrame.from_records(data2, index=[0])
-df.to_csv('data2.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
 
-print(df)
-df.to_csv('interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+for i in range(2):
+    info = data["data"]['orderDeliveries'][i]
+    df = pd.DataFrame.from_records(info, index=[0])
+    df.to_csv('interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+
+# df = pd.DataFrame.from_records(data1, index=[0])
+# df.to_csv('interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+# df = pd.DataFrame.from_records(data2, index=[0])
+# df.to_csv('interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+
+# print(df)
+# df.to_csv('interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
