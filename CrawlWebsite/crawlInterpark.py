@@ -50,7 +50,7 @@ def getSoup(browser):
     # url += 'T14%3A59%3A00Z&page=1&size=500'
 
     # 완료된 주문문
-    url = ' https://seller.interpark.com/api/orders/delivery?orderStatus=stepComplete&detailedSearchType=&detailedSearchValue=&buyConfirmHoldYn=all&searchPeriodType=deliveredDate&startDate=2021-09-20T15%3A00%3A00Z&endDate=2021-10-21T14%3A59%3A00Z&page=1&size=30'
+    url = ' https://seller.interpark.com/api/orders/delivery?orderStatus=stepComplete&detailedSearchType=&detailedSearchValue=&buyConfirmHoldYn=all&searchPeriodType=deliveredDate&startDate=2021-09-23T15%3A00%3A00Z&endDate=2021-10-23T14%3A59%3A00Z&page=1&size=30'
     browser.get(url)  # 완료된주문
     sleep(2)
     soup = BeautifulSoup(browser.page_source, 'html.parser')
@@ -71,35 +71,19 @@ def getData(soup):
         data = json.load(json_file)
     del data["code"]
     del data["message"]
+    length = len(data["data"]["orderDeliveries"])#지금 배송완료에서 따옴
+    createDf(data,length)
 
-#
-# def createDf(customer_data, length):
-#     customerList = [[0 for col in range(62)] for row in range(length)]
-#     cnt = 1  # tr 순서 선택
-#     pattern = re.compile(r'\s+')
-#     sleep(2)
-#     for i in range(length):
-#         info = customer_data.select('tr:nth-child(%d)>td' % cnt)  # 첫번째 tr 선택
-#         jcnt = 0  # 배열에 넣기 위한 count 증가
-#         cnt += 1  # 다음 tr 을위해 증가
-#         for j in info:
-#             customerList[i][jcnt] = re.sub(pattern,' ',str(j.get_text())).strip() # 배열에 삽입
-#             # print(testList[i][jcnt]) #리스트에 들어간 value들 표시
-#             jcnt += 1
-#
-#     column_name = columnname.esmColumnname
-#     df = pd.DataFrame(customerList, columns=column_name)
-#     createCsv(df)
-#     print(df)
-#     #     print("-"*100)
-#     # for i in range(length): #2차원 배열 체크용
-#     #     for j in range(62):
-#     #         print(i,j)
-#     #         print(testList[i][j])
-#     #     print("-"*100)
-#
-# def createCsv(df):
-#     df.to_csv('esm.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+def createDf(customer_data, length):
+    df = pd.DataFrame.from_records(customer_data["data"]['orderDeliveries'][0], index=[0])
+    if(int(length) > 1):
+        for i in range(int(length)-1):
+            df.append(customer_data["data"]['orderDeliveries'][i+1], ignore_index=True)
+
+    createCsv(df)
+
+def createCsv(df):
+    df.to_csv('Interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
 
 
 
