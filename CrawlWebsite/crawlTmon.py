@@ -1,10 +1,5 @@
-
-
-import get_browser
-import userinfo
 from time import sleep
 from bs4 import BeautifulSoup
-
 import pandas as pd
 import re
 import get_browser, columnname, userinfo
@@ -60,7 +55,7 @@ def getData(soup):
     ordernum = soup.select_one('#summayD1').get_text() #신규주문
     total_order = re.sub(r'[^0-9]', '', str(ordernum))
     if (int(total_order) == 0):
-        print('주문이 없습니다!')
+        print('티몬 주문 0건')
     else:
         print('총주문 개수는 : ', total_order)
         customer_data = soup.select_one('#__grid_DeliveryGrid > div.objbox > table > tbody')  # 결과
@@ -80,15 +75,9 @@ def createDf(customer_data, length):
             # print(testList[i][jcnt]) #리스트에 들어간 value들 표시
             jcnt += 1
 
-    # column_name = columnname.esmColumnname
-    df = pd.DataFrame(customerList)
+    column_name = columnname.tmonColumnname
+    df = pd.DataFrame(customerList, columns=column_name)
     createCsv(df)
-    #     print("-"*100)
-    # for i in range(length): #2차원 배열 체크용
-    #     for j in range(62):
-    #         print(i,j)
-    #         print(testList[i][j])
-    #     print("-"*100)
 #
 def createCsv(df):
     df.to_csv('tmon.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')

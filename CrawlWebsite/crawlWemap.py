@@ -1,7 +1,5 @@
 from time import sleep
-from time import sleep
 from bs4 import BeautifulSoup
-import userinfo, columnname, get_browser
 import pandas as pd
 import re
 import datetime as dt
@@ -54,7 +52,11 @@ def getData(soup):
     with open('wemap.txt', encoding='UTF-8-sig') as json_file:
         data = json.load(json_file)
     length = len(data)
-    createDf(data,length)
+    if(length == 0):
+        print('위메프 주문 0건')
+    else:
+        print('위메프 총주문 개수는 : ', length)
+        createDf(data, length)
 
 def getDict(soup): #interpark.txt 만들기
     dict = soup.select_one('body > pre')
@@ -71,7 +73,6 @@ def createDf(customer_data, length):
         for i in range(int(length)-1):
             df.append(customer_data[i+1], ignore_index=True)
     createCsv(df)
-
 
 def createCsv(df):
     df.to_csv('Wemap.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')

@@ -41,8 +41,8 @@ def Logout(browser):
 
 def getSoup(browser):
     # 브라우저 html 받기
-    # browser.get('https://www.esmplus.com/Escrow/Order/NewOrder?type=N2&menuCode=TDM105') #새주문
-    browser.get('https://www.esmplus.com/Escrow/Delivery/Sending?status=1050&type=N&menuCode=TDM111')  # 완료된주문
+    browser.get('https://www.esmplus.com/Escrow/Order/NewOrder?type=N2&menuCode=TDM105') #새주문
+    # browser.get('https://www.esmplus.com/Escrow/Delivery/Sending?status=1050&type=N&menuCode=TDM111')  # 완료된주문
     sleep(2)
     soup = BeautifulSoup(browser.page_source, 'html.parser')
     # Logout(browser)
@@ -50,13 +50,13 @@ def getSoup(browser):
 
 def getData(soup):
     # 주문 데이터 가져오기
-    ordernum = soup.select_one('#totalSendingCount > span')  # 주문완료에서 따옴
-    # ordernum = soup.select_one('#liTab1 > a > span') #신규주문
+    # ordernum = soup.select_one('#totalSendingCount > span')  # 주문완료에서 따옴
+    ordernum = soup.select_one('#liTab1 > a > span') #신규주문
     total_order = re.sub(r'[^0-9]', '', str(ordernum))
     if (int(total_order) == 0):
-        print('주문이 없습니다!')
+        print('ESM 주문 0건')
     else:
-        print('총주문 개수는 : ', total_order)
+        print('ESM 총주문 개수는 : ', total_order)
         customer_data = soup.select_one('tbody.sb-grid-results')  # 결과
         createDf(customer_data, int(total_order))
 
@@ -71,19 +71,12 @@ def createDf(customer_data, length):
         cnt += 1  # 다음 tr 을위해 증가
         for j in info:
             customerList[i][jcnt] = re.sub(pattern,' ',str(j.get_text())).strip() # 배열에 삽입
-            # print(testList[i][jcnt]) #리스트에 들어간 value들 표시
             jcnt += 1
 
     column_name = columnname.esmColumnname
     df = pd.DataFrame(customerList, columns=column_name)
     createCsv(df)
     print(df)
-    #     print("-"*100)
-    # for i in range(length): #2차원 배열 체크용
-    #     for j in range(62):
-    #         print(i,j)
-    #         print(testList[i][j])
-    #     print("-"*100)
 
 def createCsv(df):
     df.to_csv('esm.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')

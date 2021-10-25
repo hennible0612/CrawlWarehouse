@@ -6,6 +6,9 @@ import datetime as dt
 import userinfo, get_browser
 import pandas as pd
 import re
+
+from CrawlWarehouse.CrawlWebsite import columnname
+
 stack = 0
 def crawlInterpark():
     # 로그인
@@ -72,10 +75,15 @@ def getData(soup):
     del data["code"]
     del data["message"]
     length = len(data["data"]["orders"])#지금 배송완료에서 따옴
-    createDf(data,length)
+    if(int(length) == 0):
+        print('인터파크 주문 0건')
+    else:
+        print('인터파크 총주문 개수는 : ', length)
+        createDf(data, length)
 
 def createDf(customer_data, length):
     # df = pd.DataFrame.from_records(customer_data["data"]['orderDeliveries'][0], index=[0]) 배송완료
+    column_name = columnname.interparkColumnname
     df = pd.DataFrame.from_records(customer_data["data"]['orders'][0], index=[0])
     if(int(length) > 1):
         for i in range(int(length)-1):

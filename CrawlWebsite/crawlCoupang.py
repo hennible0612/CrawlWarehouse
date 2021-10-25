@@ -51,7 +51,7 @@ def getData(soup):
     # ordernum = soup.select_one('#wing-top-body > div > div:nth-child(2) > div:nth-child(4) > ul > li:nth-child(5) > article > div > em').get_text()
     total_order = int(ordernum)
     if(int(total_order) == 0):
-        print('주문이 없습니다!')
+        print('쿠팡 주문 0건')
     else:
         print('총주문 개수는 : ', total_order)
         customer_data = soup.select_one('#wing-top-body > div > div.search-table > div > div:nth-child(4) > table > tbody')
@@ -72,28 +72,15 @@ def createDf(customer_data, length):
             # print(testList[i][jcnt]) #리스트에 들어간 value들 표시
             jcnt += 1
 
-    # column_name = columnname.esmColumnname
-    df = pd.DataFrame(customerList)
+    column_name = columnname.coupangColumnname
+    df = pd.DataFrame(customerList, columns=column_name)
     df = df.drop(df.columns[3], axis=1)
     createCsv(df)
     print(df)
 
 def createCsv(df):
     df.to_csv('coupang.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
-#
-#
-# cnt = 1
-# count = 0
-# testList = [0] * 40
-# for i in range(length):
-#     info = tbody.select('tr:nth-child(%d)>td' % cnt)  # 첫번째 tr 선택
-#     cnt += 1  # 다음 tr 을위해 증가
-#     count = 0  # 배열에 넣기 위한 count 증가
-#     for j in info:
-#         testList[count] = j.get_text() + ','  # 배열에 삽입
-#         print(testList[count])  #
-#         count += 1
-#     print("-" * 100)
+
 
 
 # 체크 주문번호 분리배송 택배사 운송장번호 출고예정일 등록상품명/옵션/수량 수취인/연락처 배송지 배송상태 주문일시 묶음배송번호 주문자명 배송지연안내 접수

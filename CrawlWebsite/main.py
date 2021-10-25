@@ -1,12 +1,8 @@
-import crawlEsm
-import crawlTmon
-import crawlInterpark
-import crawlWemap
-# print("ESM 주문 확인중...")
-# crawlEsm.crawlEsm()
-# # crawlCoupang.crawlCoupang()
-# crawlInterpark.crawlInterpark()
+import crawlEsm, crawlWemap, crawlCoupang, crawlInterpark, crawlTmon
+
+crawlEsm.crawlEsm()
 crawlWemap.crawlWemap()
-
-
+crawlCoupang.crawlCoupang()
+crawlInterpark.crawlInterpark()
+crawlTmon.crawlTmon()
 
