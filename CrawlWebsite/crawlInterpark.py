@@ -43,14 +43,14 @@ def getSoup(browser):
     now = dt.datetime.now()
     week = dt.datetime.now() - dt.timedelta(weeks=1)
     # 신규주문
-    # url = 'https://seller.interpark.com/api/orders/acknowledge?orderSendStep=releasedForShipment&orderStatus=40&detailedSearchType=&detailedSearchValue=&searchPeriodType=orderDate&startDate='
-    # url += week.strftime('%Y-%m-%d')
-    # url += 'T15%3A00%3A00Z&endDate='
-    # url += now.strftime('%Y-%m-%d')
-    # url += 'T14%3A59%3A00Z&page=1&size=500'
+    url = 'https://seller.interpark.com/api/orders/acknowledge?orderSendStep=releasedForShipment&orderStatus=40&detailedSearchType=&detailedSearchValue=&searchPeriodType=orderDate&startDate='
+    url += week.strftime('%Y-%m-%d')
+    url += 'T15%3A00%3A00Z&endDate='
+    url += now.strftime('%Y-%m-%d')
+    url += 'T14%3A59%3A00Z&page=1&size=500'
 
     # 완료된 주문문
-    url = ' https://seller.interpark.com/api/orders/delivery?orderStatus=stepComplete&detailedSearchType=&detailedSearchValue=&buyConfirmHoldYn=all&searchPeriodType=deliveredDate&startDate=2021-09-23T15%3A00%3A00Z&endDate=2021-10-23T14%3A59%3A00Z&page=1&size=30'
+    # url = ' https://seller.interpark.com/api/orders/delivery?orderStatus=stepComplete&detailedSearchType=&detailedSearchValue=&buyConfirmHoldYn=all&searchPeriodType=deliveredDate&startDate=2021-09-23T15%3A00%3A00Z&endDate=2021-10-23T14%3A59%3A00Z&page=1&size=30'
     browser.get(url)  # 완료된주문
     sleep(2)
     soup = BeautifulSoup(browser.page_source, 'html.parser')
@@ -71,15 +71,15 @@ def getData(soup):
         data = json.load(json_file)
     del data["code"]
     del data["message"]
-    length = len(data["data"]["orderDeliveries"])#지금 배송완료에서 따옴
+    length = len(data["data"]["orders"])#지금 배송완료에서 따옴
     createDf(data,length)
 
 def createDf(customer_data, length):
-    df = pd.DataFrame.from_records(customer_data["data"]['orderDeliveries'][0], index=[0])
+    # df = pd.DataFrame.from_records(customer_data["data"]['orderDeliveries'][0], index=[0]) 배송완료
+    df = pd.DataFrame.from_records(customer_data["data"]['orders'][0], index=[0])
     if(int(length) > 1):
         for i in range(int(length)-1):
             df.append(customer_data["data"]['orderDeliveries'][i+1], ignore_index=True)
-
     createCsv(df)
 
 def createCsv(df):

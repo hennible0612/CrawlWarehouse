@@ -47,8 +47,8 @@ def getSoup(browser):
     getData(soup)
 
 def getData(soup):
-    # ordernum = soup.select_one('#wing-top-body > div > div:nth-child(2) > div:nth-child(4) > ul > li:nth-child(1) > article > div > em').get_text() #신규주문
-    ordernum = soup.select_one('#wing-top-body > div > div:nth-child(2) > div:nth-child(4) > ul > li:nth-child(5) > article > div > em').get_text()
+    ordernum = soup.select_one('#wing-top-body > div > div:nth-child(2) > div:nth-child(4) > ul > li:nth-child(1) > article > div > em').get_text() #신규주문
+    # ordernum = soup.select_one('#wing-top-body > div > div:nth-child(2) > div:nth-child(4) > ul > li:nth-child(5) > article > div > em').get_text()
     total_order = int(ordernum)
     if(int(total_order) == 0):
         print('주문이 없습니다!')

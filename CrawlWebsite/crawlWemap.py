@@ -1,18 +1,85 @@
 from time import sleep
-
+from time import sleep
+from bs4 import BeautifulSoup
+import userinfo, columnname, get_browser
+import pandas as pd
+import re
+import datetime as dt
 import userinfo, get_browser
-browser = get_browser.get_browser()
+import json
 
-#로그인
-browser.get("https://wpartner.wemakeprice.com/login")
-browser.find_element_by_xpath("/html/body/div/div[2]/div[1]/div/div[1]/div[1]/input[1]").send_keys(userinfo.wemap_id)
-browser.find_element_by_xpath("/html/body/div/div[2]/div[1]/div/div[1]/div[1]/input[2]").send_keys(userinfo.wemap_pw)
-browser.find_element_by_id("login").click()
+def crawlWemap():
+    global stack
+    browser = get_browser.get_browser()
+    try:
+        browser.get("https://wpartner.wemakeprice.com/login")
+        browser.find_element_by_xpath("/html/body/div/div[2]/div[1]/div/div[1]/div[1]/input[1]").send_keys(
+            userinfo.wemap_id)
+        browser.find_element_by_xpath("/html/body/div/div[2]/div[1]/div/div[1]/div[1]/input[2]").send_keys(
+            userinfo.wemap_pw)
+        browser.find_element_by_id("login").click()
+        print('로그인 성공')
+        sleep(2)
+    except:
+        print("로그인 중 에러")
+        sleep(2)
+        while (stack < 3):
+            print('로그인 다시시도')
+            stack += 1
+            browser.close()
+            sleep(2)
+            crawlWemap()
+            if stack >= 3:
+                print('위매프로그인 실패')
+                return
+                break
+    getSoup(browser)
 
-sleep(5)
-#인증번호 요청하기
-browser.find_element_by_xpath("/html/body/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/label[1]").click()
-browser.find_element_by_xpath('//*[@id="sendAuth"]').click()
+def getSoup(browser):
+    # browser.get('https://wpartner.wemakeprice.com/ship/orderMain')
+    now = dt.datetime.now()
+    week = dt.datetime.now() - dt.timedelta(weeks=1)
+    url='https://wpartner.wemakeprice.com/ship/getOrderInfoList.json?confirmShipNoStr=&schTotalFlag=&schDateType=orderDt&schStartDate='
+    url += week.strftime('%Y-%m-%d')
+    url += '&schEndDate='
+    url += now.strftime('%Y-%m-%d')
+    url += '&schShipStatus=D1&schShipMethod=&schDelayShipInfoYn=&schType=&schValue=&schLimitCnt=100&schPageNo=1&_=1635125837449'
+    browser.get(url)
+    html = browser.page_source
+    soup = BeautifulSoup(html, 'html.parser')
+    getData(soup)
+
+def getData(soup):
+    getDict(soup)
+    with open('wemap.txt', encoding='UTF-8-sig') as json_file:
+        data = json.load(json_file)
+    length = len(data)
+    createDf(data,length)
+
+def getDict(soup): #interpark.txt 만들기
+    dict = soup.select_one('body > pre')
+    pattern = re.compile(r'\s+')
+    txt = dict.get_text()
+    with open('wemap.txt', 'w', encoding='utf-8-sig') as f:
+        f.write(txt)
+    f.close()
+
+def createDf(customer_data, length):
+    # df = pd.DataFrame.from_records(customer_data["data"]['orderDeliveries'][0], index=[0]) 배송완료
+    df = pd.DataFrame.from_records(customer_data[0], index=[0])
+    if(int(length) > 1):
+        for i in range(int(length)-1):
+            df.append(customer_data[i+1], ignore_index=True)
+    createCsv(df)
+
+
+def createCsv(df):
+    df.to_csv('Wemap.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+
+# sleep(5)
+# #인증번호 요청하기
+# browser.find_element_by_xpath("/html/body/div/div[2]/div[1]/div/div[1]/div[2]/div/div/div/label[1]").click()
+# browser.find_element_by_xpath('//*[@id="sendAuth"]').click()
 
 
 # sleep(20)
@@ -35,13 +102,13 @@ browser.find_element_by_xpath('//*[@id="sendAuth"]').click()
 # browser.find_element_by_xpath('//*[@id="authCode"]').send_keys(authNum)
 # browser.find_element_by_xpath('//*[@id="checkAuth"]').click()
 
-sleep(2)
-#알림창 dismiss
-notice = browser.switch_to_alert()
-notice.dismiss()
-
-# 비밀번호 다음에 변경하기
-browser.find_element_by_xpath('//*[@id="reactapp"]/div/div[2]/div/button[2]').click()
+# sleep(2)
+# #알림창 dismiss
+# notice = browser.switch_to_alert()
+# notice.dismiss()
+#
+# # 비밀번호 다음에 변경하기
+# browser.find_element_by_xpath('//*[@id="reactapp"]/div/div[2]/div/button[2]').click()
 
 # #데이터 가져오기
 # browser.find_element_by_xpath('//*[@id="requestCancelCount"]').click()
