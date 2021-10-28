@@ -1,5 +1,7 @@
 from crawlwarehouse import crawlEsm
-crawlEsm.crawlEsm()
+import crawlNaver
+crawlNaver.crawlNaver()
+# crawlEsm.crawlEsm()
 # crawlWemap.crawlWemap()
 # crawlCoupang.crawlCoupang()
 # crawlInterpark.crawlInterpark()
