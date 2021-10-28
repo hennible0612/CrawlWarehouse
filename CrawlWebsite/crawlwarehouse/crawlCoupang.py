@@ -1,10 +1,10 @@
 from time import sleep
 from bs4 import BeautifulSoup
-import userinfo, columnname, get_browser
 import pandas as pd
 import re
-
+import get_browser, columnname, userinfo
 import datetime as dt
+
 stack = 0
 
 def crawlCoupang():
@@ -79,7 +79,7 @@ def createDf(customer_data, length):
     print(df)
 
 def createCsv(df):
-    df.to_csv('coupang.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+    df.to_csv(userinfo.path +'coupang.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
 
 
 

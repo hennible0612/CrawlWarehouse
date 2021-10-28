@@ -3,9 +3,10 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 import datetime as dt
-import userinfo, get_browser
 import json
+import get_browser, columnname, userinfo
 
+stack = 0
 def crawlWemap():
     global stack
     browser = get_browser.get_browser()
@@ -75,7 +76,7 @@ def createDf(customer_data, length):
     createCsv(df)
 
 def createCsv(df):
-    df.to_csv('Wemap.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+    df.to_csv(userinfo.path +'Wemap.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
 
 # sleep(5)
 # #인증번호 요청하기

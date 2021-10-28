@@ -3,10 +3,9 @@ from time import sleep
 import json
 from bs4 import BeautifulSoup
 import datetime as dt
-import userinfo, get_browser
 import pandas as pd
 import re
-
+import get_browser, columnname, userinfo
 from CrawlWarehouse.CrawlWebsite import columnname
 
 stack = 0
@@ -91,7 +90,7 @@ def createDf(customer_data, length):
     createCsv(df)
 
 def createCsv(df):
-    df.to_csv('Interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+    df.to_csv(userinfo.path +'Interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
 
 
 

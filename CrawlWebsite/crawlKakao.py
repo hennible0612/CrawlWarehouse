@@ -1,6 +1,8 @@
 from time import sleep
 
-import userinfo, get_browser
+import get_browser
+from CrawlWebsite import userinfo
+
 browser = get_browser.get_browser()
 
 

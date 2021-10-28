@@ -1,8 +1,7 @@
-import crawlEsm, crawlWemap, crawlCoupang, crawlInterpark, crawlTmon
-
+from crawlwarehouse import crawlEsm
 crawlEsm.crawlEsm()
-crawlWemap.crawlWemap()
-crawlCoupang.crawlCoupang()
-crawlInterpark.crawlInterpark()
-crawlTmon.crawlTmon()
+# crawlWemap.crawlWemap()
+# crawlCoupang.crawlCoupang()
+# crawlInterpark.crawlInterpark()
+# crawlTmon.crawlTmon()
 

@@ -1,4 +1,13 @@
-import userinfo, get_browser
+import get_browser
+from CrawlWebsite import userinfo
+import get_browser, columnname
+
+stack = 0
+
+def crawlNaver():
+    global stack
+
+
 browser = get_browser.get_browser()
 
 browser.get("https://nid.naver.com/nidlogin.login?url=https%3A%2F%2Fsell.smartstore.naver.com%2F%23%2FnaverLoginCallback%3Furl%3Dhttps%253A%252F%252Fsell.smartstore.naver.com%252F%2523")
