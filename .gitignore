@@ -3,3 +3,5 @@ CrawlWebsite/userinfo.py
 /CrawlWebsite/csv/
 /CrawlWebsite/csvesm.csv
 /CrawlWebsite/esm.csv
+/CrawlWebsite/coupang.csv
+/CrawlWebsite/columnname.py
