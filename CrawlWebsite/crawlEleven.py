@@ -61,13 +61,16 @@ def getData(soup):
     # ordernum = soup.select_one('#contenttabledataGrid')  #배송중에서 따옴
     ordernum = soup.select_one('#subClmCount > li > b:nth-child(1)')  #배송중에서 따옴
     # ordernum = soup.select_one('#liTab1 > a > span') #신규주문
-    total_order = re.sub(r'[^0-9]', '', str(ordernum))
-    if (float(total_order) == 0):
+    # total_order = re.sub(r'[^0-9]', '', str(ordernum))
+    total_order = ordernum
+    print(type(total_order))
+    if (int(total_order) == 0):
         print('11번가 주문 0건')
     else:
         print('11번가 총주문 개수는 : ', total_order)
         customer_data = soup.select_one('#contenttabledataGrid')  # 결과
         print(customer_data)
+        sleep(4234234234234234)
         createDf(customer_data, int(total_order))
 #
 def createDf(customer_data, length):
