@@ -32,8 +32,8 @@ def crawlNaver():
 
 def getSoup(browser):
     # 배송중으로 연습 할꺼임
-    # browser.get("https://sell.smartstore.naver.com/o/v3/n/sale/delivery") # 신규주문
-    browser.get("https://sell.smartstore.naver.com/o/v3/n/sale/delivery/situation?summaryInfoType=DELIVERING") #배송중
+    browser.get("https://sell.smartstore.naver.com/o/v3/n/sale/delivery") # 신규주문
+    # browser.get("https://sell.smartstore.naver.com/o/v3/n/sale/delivery/situation?summaryInfoType=DELIVERING") #배송중
     soup = BeautifulSoup(browser.page_source,'html.parser')
     getData(soup)
 
@@ -41,9 +41,9 @@ def getData(soup):
     # 주문 데이터 가져오기
     #주문 개수 확인
     #아래 배송중에써 따옴
-    ordernum = soup.select_one('#__app_root__ > div > div.napy_sub_content > div:nth-child(2) > div > div:nth-child(2) > ul > li.on._3In6Nn0ucW._1pb3RPYXfD > div > a._3a4NLUdd2p > b')
+    # ordernum = soup.select_one('#__app_root__ > div > div.napy_sub_content > div:nth-child(2) > div > div:nth-child(2) > ul > li.on._3In6Nn0ucW._1pb3RPYXfD > div > a._3a4NLUdd2p > b')
     #아래는 신규주문
-    # ordernum = soup.select_one('#__app_root__ > div > div.napy_sub_content > div:nth-child(2) > div > div:nth-child(2) > ul > li.on._3In6Nn0ucW._1pb3RPYXfD > div > a._3a4NLUdd2p > b') #신규주문
+    ordernum = soup.select_one('#__app_root__ > div > div.napy_sub_content > div:nth-child(2) > div > div:nth-child(2) > ul > li.on._3In6Nn0ucW._1pb3RPYXfD > div > a._3a4NLUdd2p > b').get_text() #신규주문
     total_order = re.sub(r'[^0-9]', '', str(ordernum))
     print(total_order)
     if (int(total_order) == 0):
