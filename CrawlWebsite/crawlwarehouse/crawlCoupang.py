@@ -40,7 +40,7 @@ def getSoup(browser):
     url += '&endDate='
     url += now.strftime('%Y-%m-%d')
     browser.get(url)
-    browser.find_element_by_xpath('//*[@id="wing-top-body"]/div/div[2]/div[4]/ul/li[5]/article').click() #배송완료 클릭
+    browser.find_element_by_xpath('//*[@id="wing-top-body"]/div/div[2]/div[4]/ul/li[1]/article').click()
     sleep(2)
     html = browser.page_source
     soup = BeautifulSoup(html, 'html.parser')
@@ -58,7 +58,7 @@ def getData(soup):
         createDf(customer_data, int(total_order))
 
 def createDf(customer_data, length):
-    customerList = [[0 for col in range(15)] for row in range(length)] #배송완료 15개
+    customerList = [[0 for col in range(20)] for row in range(length)] #배송완료 15개
     cnt = 1  # tr 순서 선택
     sleep(2)
     pattern = re.compile(r'\s+')
@@ -73,8 +73,8 @@ def createDf(customer_data, length):
             jcnt += 1
 
     column_name = columnname.coupangColumnname
-    df = pd.DataFrame(customerList, columns=column_name)
-    df = df.drop(df.columns[3], axis=1)
+    df = pd.DataFrame(customerList)
+    df = df.drop(df.columns[length], axis=1) #length 3이였음
     createCsv(df)
     print(df)
 

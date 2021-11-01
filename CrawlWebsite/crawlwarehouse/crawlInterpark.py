@@ -6,7 +6,7 @@ import datetime as dt
 import pandas as pd
 import re
 import get_browser, columnname, userinfo
-from CrawlWarehouse.CrawlWebsite import columnname
+import columnname
 
 stack = 0
 def crawlInterpark():
