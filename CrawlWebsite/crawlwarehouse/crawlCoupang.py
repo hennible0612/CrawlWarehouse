@@ -67,9 +67,7 @@ def createDf(customer_data, length):
         jcnt = 0  # 배열에 넣기 위한 count 증가
         cnt += 1  # 다음 tr 을위해 증가
         for j in info:
-            # customerList[i][jcnt] = str(j.get_text()).split()# 배열에 삽입
             customerList[i][jcnt] = re.sub(pattern,' ',str(j.get_text())).strip()# 배열에 삽입
-            # print(testList[i][jcnt]) #리스트에 들어간 value들 표시
             jcnt += 1
 
     column_name = columnname.coupangColumnname

@@ -12,14 +12,3 @@ def get_browser():
     #firefox = webdriver.Firefox()
     return browser
 
-
-    # options = Options()
-    # ua = UserAgent()
-    # userAgent = ua.random
-    # options.add_argument(f'user-agent={userAgent}')
-    # options.add_experimental_option("prefs", {
-    #     "profile.default_content_setting_values.notifications": 1
-    # })
-    # browser = webdriver.Chrome(chrome_options=options)
-    # #firefox = webdriver.Firefox()
-    # return browser
