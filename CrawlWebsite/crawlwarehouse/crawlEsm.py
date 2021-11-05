@@ -74,7 +74,9 @@ def createDf(customer_data, length):
             jcnt += 1
 
     column_name = columnname.esmColumnname
+    # df = pd.DataFrame(customerList)
     df = pd.DataFrame(customerList, columns=column_name)
+    df = df.drop(df.columns[i], axis=1)
     createCsv(df)
     print(df)
 

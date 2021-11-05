@@ -5,3 +5,4 @@ CrawlWebsite/userinfo.py
 /CrawlWebsite/esm.csv
 /CrawlWebsite/coupang.csv
 /CrawlWebsite/columnname.py
+CrawlWebsite/coupangApiTest.py

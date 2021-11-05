@@ -1,10 +1,12 @@
+from calendar import week
 from time import sleep
+import json
 from bs4 import BeautifulSoup
+import datetime as dt
 import pandas as pd
 import re
 import get_browser, columnname, userinfo
-import datetime as dt
-
+import columnname
 stack = 0
 
 def crawlCoupang():
@@ -39,45 +41,94 @@ def getSoup(browser):
     url += week.strftime('%Y-%m-%d')
     url += '&endDate='
     url += now.strftime('%Y-%m-%d')
+    #배송완료
     browser.get(url)
-    browser.find_element_by_xpath('//*[@id="wing-top-body"]/div/div[2]/div[4]/ul/li[1]/article').click()
-    sleep(2)
+    # browser.find_element_by_xpath('//*[@id="wing-top-body"]/div/div[2]/div[4]/ul/li[5]/article').click() #배송완료
+    browser.find_element_by_xpath('//*[@id="wing-top-body"]/div/div[2]/div[4]/ul/li[1]/article').click() #결제완료
+    browser.find_element_by_xpath('//*[@id="wing-top-body"]/div/div[4]/div/div[1]/span[3]/span/select/option[5]').click()
+    url = 'https://wing.coupang.com/tenants/sfl-portal/delivery/management/dashboard/search?condition=%7B%22nextShipmentBoxId%22%3Anull%2C%22startDate%22%3A%22'
+    url += week.strftime('%Y-%m-%d')
+    url += '%22%2C%22endDate%22%3A%22'
+    url += now.strftime('%Y-%m-%d')
+    url += '%22%2C%22deliveryStatus%22%3A%22ACCEPT%22%2C%22deliveryMethod%22%3Anull%2C%22detailConditionKey%22%3A%22NAME%22%2C%22detailConditionValue%22%3Anull%2C%22selectedComplexConditionKey%22%3Anull%2C%22countPerPage%22%3A10%2C%22page%22%3A1%2C%22shipmentType%22%3Anull%7D&mockingTestMode=false'
+
+    browser.get(url)
     html = browser.page_source
     soup = BeautifulSoup(html, 'html.parser')
     getData(soup)
 
+def getDict(soup):  # interpark.txt 만들기
+    dict = soup.select_one('body > pre')
+    pattern = re.compile(r'\s+')
+    txt = dict.get_text()
+    with open('coupang.txt', 'w', encoding='utf-8-sig') as f:
+        f.write(txt)
+    f.close()
+
 def getData(soup):
-    ordernum = soup.select_one('#wing-top-body > div > div:nth-child(2) > div:nth-child(4) > ul > li:nth-child(1) > article > div > em').get_text() #신규주문
-    # ordernum = soup.select_one('#wing-top-body > div > div:nth-child(2) > div:nth-child(4) > ul > li:nth-child(5) > article > div > em').get_text()
-    total_order = int(ordernum)
-    if(int(total_order) == 0):
+    getDict(soup)
+    with open('coupang.txt', encoding='UTF-8-sig') as json_file:
+        data = json.load(json_file)
+    length = len(data)#지금 배송완료에서 따옴
+
+    """
+    필요없는 데이터삭제
+    """
+
+    for i in range(length):
+        del data[i]["items"]
+        del data[i]["trackingInfos"]
+        del data[i]["statusTrace"]
+    # data1 = data[0].update(data[0]["safeNumberDto"]) #dict안에 혼자 dict임
+
+    if(int(length) == 0):
         print('쿠팡 주문 0건')
     else:
-        print('총주문 개수는 : ', total_order)
-        customer_data = soup.select_one('#wing-top-body > div > div.search-table > div > div:nth-child(4) > table > tbody')
-        createDf(customer_data, int(total_order))
+        print('쿠팡 총주문 개수는 : ', length)
+        createDf(data, length)
 
 def createDf(customer_data, length):
-    customerList = [[0 for col in range(20)] for row in range(length)] #배송완료 15개
-    cnt = 1  # tr 순서 선택
-    sleep(2)
-    pattern = re.compile(r'\s+')
-    for i in range(length):
-        info = customer_data.select('tr:nth-child(%d)>td' % cnt)  # 첫번째 tr 선택
-        jcnt = 0  # 배열에 넣기 위한 count 증가
-        cnt += 1  # 다음 tr 을위해 증가
-        for j in info:
-            customerList[i][jcnt] = re.sub(pattern,' ',str(j.get_text())).strip()# 배열에 삽입
-            jcnt += 1
 
-    column_name = columnname.coupangColumnname
-    df = pd.DataFrame(customerList)
-    df = df.drop(df.columns[length], axis=1) #length 3이였음
+    # dfDict = pd.DataFrame.from_records(customer_data[0]["safeNumberDto"],index=0)
+    dfDict = dfDict = pd.DataFrame([customer_data[0]["safeNumberDto"]])
+    if(int(length)>1):
+        for i in range(int(length)-1):
+            dfDict = dfDict.append(customer_data[i+1]["safeNumberDto"], ignore_index=True)
+    for i in range(length):
+        del customer_data[i]["safeNumberDto"]
+    dfList = pd.DataFrame(customer_data)
+    """
+    여기서 dfDict랑 dfList Column 기준으로 합치기
+    """
+    df = pd.concat([dfList,dfDict], axis=1,ignore_index=True)
+    #dfList 먼저 후 dfDict
     createCsv(df)
-    print(df)
 
 def createCsv(df):
-    df.to_csv(userinfo.path +'coupang.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+    df.to_csv(userinfo.path +'coupangTest.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+
+# def createDf(customer_data, length):
+#     customerList = [[0 for col in range(40)] for row in range(length)] #배송완료 15개
+#     cnt = 1  # tr 순서 선택
+#     sleep(2)
+#     pattern = re.compile(r'\s+')
+#     for i in range(length):
+#         info = customer_data.select('tr:nth-child(%d)>td' % cnt)  # 첫번째 tr 선택
+#         jcnt = 0  # 배열에 넣기 위한 count 증가
+#         cnt += 1  # 다음 tr 을위해 증가
+#         for j in info:
+#             # customerList[i][jcnt] = str(j.get_text()).split()# 배열에 삽입
+#             customerList[i][jcnt] = re.sub(pattern,' ',str(j.get_text())).strip()# 배열에 삽입
+#             # print(testList[i][jcnt]) #리스트에 들어간 value들 표시
+#             jcnt += 1
+#
+#     column_name = columnname.coupangColumnname
+#     df = pd.DataFrame(customerList)
+#     df = df.drop(df.columns[length], axis=1) #length 3이였음
+#     createCsv(df)
+#     print(df)
+#
+
 
 
 
