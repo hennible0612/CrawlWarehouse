@@ -90,7 +90,7 @@ def getData(soup):
 def createDf(customer_data, length):
 
     # dfDict = pd.DataFrame.from_records(customer_data[0]["safeNumberDto"],index=0)
-    dfDict = dfDict = pd.DataFrame([customer_data[0]["safeNumberDto"]])
+    dfDict = pd.DataFrame([customer_data[0]["safeNumberDto"]])
     if(int(length)>1):
         for i in range(int(length)-1):
             dfDict = dfDict.append(customer_data[i+1]["safeNumberDto"], ignore_index=True)
@@ -102,8 +102,6 @@ def createDf(customer_data, length):
     """
     df = pd.concat([dfList,dfDict], axis=1,ignore_index=True)
     column_name = columnname.coupangColumnname
-    print(df)
-    print(type(df))
 
     df.columns = column_name
     #dfList 먼저 후 dfDict

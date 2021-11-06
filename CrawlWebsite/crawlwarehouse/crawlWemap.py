@@ -68,11 +68,15 @@ def getDict(soup): #interpark.txt 만들기
     f.close()
 
 def createDf(customer_data, length):
+    column_name = columnname.wemapColumnname
+
     # df = pd.DataFrame.from_records(customer_data["data"]['orderDeliveries'][0], index=[0]) 배송완료
     df = pd.DataFrame.from_records(customer_data[0], index=[0])
     if(int(length) > 1):
         for i in range(int(length)-1):
-            df.append(customer_data[i+1], ignore_index=True)
+            df = df.append(customer_data[i+1], ignore_index=True)
+
+    # df.columns = column_name
     createCsv(df)
 
 def createCsv(df):

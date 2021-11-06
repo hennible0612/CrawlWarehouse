@@ -74,7 +74,8 @@ def createDf(customer_data, length):
             jcnt += 1
 
     column_name = columnname.tmonColumnname
-    df = pd.DataFrame(customerList)
+    df = pd.DataFrame(customerList, columns=column_name)
+    # df = pd.DataFrame(customerList)
     createCsv(df)
 #
 def createCsv(df):
