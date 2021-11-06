@@ -83,10 +83,11 @@ def getData(soup):
 def createDf(customer_data, length):
     # df = pd.DataFrame.from_records(customer_data["data"]['orderDeliveries'][0], index=[0]) 배송완료
     column_name = columnname.interparkColumnname
-    df = pd.DataFrame.from_records(customer_data["data"]['orders'][0], index=[0])
+    df = pd.DataFrame.from_records(customer_data["data"]["orders"][0], index=[0])
     if(int(length) > 1):
         for i in range(int(length)-1):
-            df.append(customer_data["data"]['orderDeliveries'][i+1], ignore_index=True)
+            df = df.append(customer_data["data"]["orders"][i+1], ignore_index=True)
+    df.columns = column_name
     createCsv(df)
 
 def createCsv(df):

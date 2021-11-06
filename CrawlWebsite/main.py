@@ -4,9 +4,9 @@ import crawlEleven
 # crawlEleven.crawlEleven()
 # crawlNaver.crawlNaver()
 # crawlEsm.crawlEsm()
-# crawlInterpark.crawlInterpark()
+crawlInterpark.crawlInterpark()
 # crawlWemap.crawlWemap()
-crawlCoupang.crawlCoupang()
+# crawlCoupang.crawlCoupang()
 # crawlInterpark.crawlInterpark()
 # crawlTmon.crawlTmon()
 

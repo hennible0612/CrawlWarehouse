@@ -60,7 +60,7 @@ def getData(soup):
         createDf(customer_data, int(total_order))
 #
 def createDf(customer_data, length):
-    customerList = [[0 for col in range(62)] for row in range(length)]
+    customerList = [[0 for col in range(49)] for row in range(length)]
     cnt = 2  # tr 순서 선택
     pattern = re.compile(r'\s+')
     sleep(2)

@@ -101,11 +101,16 @@ def createDf(customer_data, length):
     여기서 dfDict랑 dfList Column 기준으로 합치기
     """
     df = pd.concat([dfList,dfDict], axis=1,ignore_index=True)
+    column_name = columnname.coupangColumnname
+    print(df)
+    print(type(df))
+
+    df.columns = column_name
     #dfList 먼저 후 dfDict
     createCsv(df)
 
 def createCsv(df):
-    df.to_csv(userinfo.path +'coupangTest.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+    df.to_csv(userinfo.path +'coupang.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
 
 # def createDf(customer_data, length):
 #     customerList = [[0 for col in range(40)] for row in range(length)] #배송완료 15개

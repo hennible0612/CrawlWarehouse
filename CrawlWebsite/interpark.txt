@@ -1,1 +1,0 @@
-﻿{"code":200,"message":"완료","data":{"orders":[],"domesticTotalCount":0,"abroadTotalCount":0,"paging":{"page":1,"size":500,"totalCount":0,"rowCount":0},"statusOfAcknowledgeOrders":null}}
