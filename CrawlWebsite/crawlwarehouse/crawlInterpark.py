@@ -18,11 +18,14 @@ def crawlInterpark():
         browser.find_element_by_id("memId").send_keys(userinfo.interpark_id)
         browser.find_element_by_id("memPwd").send_keys(userinfo.interpark_pw)
         browser.find_element_by_xpath('//*[@id="frmMemberLogin"]/div[1]/button').click()
-        print('로그인 성공')
+        print('인터파크 로그인 성공')
         sleep(2)
+        """
+        wait until browser loadas 추가
+        """
     except:
         print("로그인 중 에러")
-        sleep(2)
+        # sleep(2)
         while(stack <3):
             print('로그인 다시시도')
             stack += 1
@@ -30,7 +33,7 @@ def crawlInterpark():
             sleep(2)
             crawlInterpark()
             if stack >= 3:
-                print('esm로그인 실패')
+                print('인터파크 로그인 실패')
                 return False
                 break
     getSoup(browser)

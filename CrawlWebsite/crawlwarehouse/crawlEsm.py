@@ -17,19 +17,19 @@ def crawlEsm():
         browser.find_element_by_id("Id").send_keys(userinfo.gmarket_id)
         browser.find_element_by_id("Password").send_keys(userinfo.gmarket_pw)
         browser.find_element_by_id("btnLogOn").click()
-        print('로그인 성공')
-        sleep(2)
+        print('ESM 로그인 성공')
+        # sleep(2)
     except:
         print("로그인 중 에러")
-        sleep(2)
+        # sleep(2)
         while(stack <3):
             print('로그인 다시시도')
             stack += 1
             browser.close()
-            sleep(2)
+            # sleep(2)
             crawlEsm()
             if stack >= 3:
-                print('esm로그인 실패')
+                print('ESM 로그인 실패')
                 return False
                 break
     getSoup(browser)
@@ -43,7 +43,7 @@ def getSoup(browser):
     # 브라우저 html 받기
     browser.get('https://www.esmplus.com/Escrow/Order/NewOrder?type=N2&menuCode=TDM105') #새주문
     # browser.get('https://www.esmplus.com/Escrow/Delivery/Sending?status=1050&type=N&menuCode=TDM111')  # 완료된주문
-    sleep(2)
+    # sleep(2)
     soup = BeautifulSoup(browser.page_source, 'html.parser')
     # Logout(browser)
     getData(soup)
@@ -64,7 +64,7 @@ def createDf(customer_data, length):
     customerList = [[0 for col in range(62)] for row in range(length)]
     cnt = 1  # tr 순서 선택
     pattern = re.compile(r'\s+')
-    sleep(2)
+    # sleep(2)
     for i in range(length):
         info = customer_data.select('tr:nth-child(%d)>td' % cnt)  # 첫번째 tr 선택
         jcnt = 0  # 배열에 넣기 위한 count 증가
@@ -78,7 +78,6 @@ def createDf(customer_data, length):
     df = pd.DataFrame(customerList, columns=column_name)
     df = df.drop(df.columns[i], axis=1)
     createCsv(df)
-    print(df)
 
 def createCsv(df):
 

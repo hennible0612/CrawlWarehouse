@@ -17,19 +17,22 @@ def crawlCoupang():
         browser.find_element_by_id("userID").send_keys(userinfo.coupang_id)
         browser.find_element_by_id("userPWD").send_keys(userinfo.coupang_pw)
         browser.find_element_by_xpath('//*[@id="btnLogin"]').click()
-        print('로그인 성공')
+        print('쿠팡 로그인 성공')
         sleep(2)
+        """
+        wait until browser loads
+        """
     except:
         print("로그인 중 에러")
-        sleep(2)
+        # sleep(2)
         while (stack < 3):
             print('로그인 다시시도')
             stack += 1
             browser.close()
-            sleep(2)
+            # sleep(2)
             crawlCoupang()
             if stack >= 3:
-                print('coupang로그인 실패')
+                print('쿠팡 로그인 실패')
                 return
                 break
     getSoup(browser)

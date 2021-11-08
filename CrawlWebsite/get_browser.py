@@ -7,7 +7,7 @@ def get_browser():
     options.add_argument('user-agent='+ user_agent)
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
-    # options.add_argument('headless') #headless
+    options.add_argument('headless') #headless
     browser = webdriver.Chrome(chrome_options=options)
     #firefox = webdriver.Firefox()
     return browser

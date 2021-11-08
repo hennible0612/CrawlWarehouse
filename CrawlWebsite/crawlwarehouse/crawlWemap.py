@@ -17,16 +17,19 @@ def crawlWemap():
         browser.find_element_by_xpath("/html/body/div/div[2]/div[1]/div/div[1]/div[1]/input[2]").send_keys(
             userinfo.wemap_pw)
         browser.find_element_by_id("login").click()
-        print('로그인 성공')
+        print('위메프 로그인 성공')
         sleep(2)
+        """
+        wait until browser loads 추가
+        """
     except:
         print("로그인 중 에러")
-        sleep(2)
+        # sleep(2)
         while (stack < 3):
             print('로그인 다시시도')
             stack += 1
             browser.close()
-            sleep(2)
+            # sleep(2)
             crawlWemap()
             if stack >= 3:
                 print('위매프로그인 실패')
@@ -68,15 +71,14 @@ def getDict(soup): #interpark.txt 만들기
     f.close()
 
 def createDf(customer_data, length):
-    column_name = columnname.wemapColumnname
-
-    # df = pd.DataFrame.from_records(customer_data["data"]['orderDeliveries'][0], index=[0]) 배송완료
+    # df = pd.DataFrame.from_records(customer_data[0], columns=column_name, index=[0])
     df = pd.DataFrame.from_records(customer_data[0], index=[0])
     if(int(length) > 1):
         for i in range(int(length)-1):
             df = df.append(customer_data[i+1], ignore_index=True)
+    column_name = columnname.wemapColumnname
 
-    # df.columns = column_name
+    df.columns = column_name
     createCsv(df)
 
 def createCsv(df):
