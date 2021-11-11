@@ -74,6 +74,9 @@ def createDf(length, *args):
             jcnt += 1
     df2 = pd.DataFrame(customerList)
     df = pd.concat([df1,df2], axis=1,ignore_index=True)
+    column_name = columnname.naverColumnname
+
+    df.columns = column_name
     createCsv(df)
 
 def createCsv(df):

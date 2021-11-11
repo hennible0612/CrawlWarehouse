@@ -54,7 +54,6 @@ def getSoup(browser):
     url += '%22%2C%22endDate%22%3A%22'
     url += now.strftime('%Y-%m-%d')
     url += '%22%2C%22deliveryStatus%22%3A%22ACCEPT%22%2C%22deliveryMethod%22%3Anull%2C%22detailConditionKey%22%3A%22NAME%22%2C%22detailConditionValue%22%3Anull%2C%22selectedComplexConditionKey%22%3Anull%2C%22countPerPage%22%3A10%2C%22page%22%3A1%2C%22shipmentType%22%3Anull%7D&mockingTestMode=false'
-
     browser.get(url)
     html = browser.page_source
     soup = BeautifulSoup(html, 'html.parser')
@@ -82,7 +81,6 @@ def getData(soup):
         del data[i]["items"]
         del data[i]["trackingInfos"]
         del data[i]["statusTrace"]
-    # data1 = data[0].update(data[0]["safeNumberDto"]) #dict안에 혼자 dict임
 
     if(int(length) == 0):
         print('쿠팡 주문 0건')
@@ -91,8 +89,6 @@ def getData(soup):
         createDf(data, length)
 
 def createDf(customer_data, length):
-
-    # dfDict = pd.DataFrame.from_records(customer_data[0]["safeNumberDto"],index=0)
     dfDict = pd.DataFrame([customer_data[0]["safeNumberDto"]])
     if(int(length)>1):
         for i in range(int(length)-1):
@@ -108,34 +104,9 @@ def createDf(customer_data, length):
 
     df.columns = column_name
     #dfList 먼저 후 dfDict
+    # df = df.drop('del', axis=1) # del 삭제
     createCsv(df)
 
 def createCsv(df):
     df.to_csv(userinfo.path +'coupang.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
 
-# def createDf(customer_data, length):
-#     customerList = [[0 for col in range(40)] for row in range(length)] #배송완료 15개
-#     cnt = 1  # tr 순서 선택
-#     sleep(2)
-#     pattern = re.compile(r'\s+')
-#     for i in range(length):
-#         info = customer_data.select('tr:nth-child(%d)>td' % cnt)  # 첫번째 tr 선택
-#         jcnt = 0  # 배열에 넣기 위한 count 증가
-#         cnt += 1  # 다음 tr 을위해 증가
-#         for j in info:
-#             # customerList[i][jcnt] = str(j.get_text()).split()# 배열에 삽입
-#             customerList[i][jcnt] = re.sub(pattern,' ',str(j.get_text())).strip()# 배열에 삽입
-#             # print(testList[i][jcnt]) #리스트에 들어간 value들 표시
-#             jcnt += 1
-#
-#     column_name = columnname.coupangColumnname
-#     df = pd.DataFrame(customerList)
-#     df = df.drop(df.columns[length], axis=1) #length 3이였음
-#     createCsv(df)
-#     print(df)
-#
-
-
-
-
-# 체크 주문번호 분리배송 택배사 운송장번호 출고예정일 등록상품명/옵션/수량 수취인/연락처 배송지 배송상태 주문일시 묶음배송번호 주문자명 배송지연안내 접수
