@@ -104,7 +104,7 @@ def createDf(customer_data, length):
 
     df.columns = column_name
     #dfList 먼저 후 dfDict
-    # df = df.drop('del', axis=1) # del 삭제
+    df = df.drop('del', axis=1) # del 삭제
     createCsv(df)
 
 def createCsv(df):
