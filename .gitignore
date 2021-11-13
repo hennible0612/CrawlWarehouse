@@ -10,3 +10,5 @@ CrawlWebsite/coupangApiTest.py
 CrawlWebsite/interpark.txt
 
 CrawlWebsite/coupang.txt
+
+*.csv
