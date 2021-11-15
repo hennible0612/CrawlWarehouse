@@ -79,6 +79,8 @@ def createDf(customer_data, length):
     column_name = columnname.wemapColumnname
 
     df.columns = column_name
+    df = df.drop('del',axis=1)
+
     createCsv(df)
 
 def createCsv(df):

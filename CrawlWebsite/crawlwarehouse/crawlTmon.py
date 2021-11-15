@@ -79,6 +79,8 @@ def createDf(customer_data, length):
 
     column_name = columnname.tmonColumnname
     df = pd.DataFrame(customerList, columns=column_name)
+    df = df.drop('del',axis=1)
+
     # df = pd.DataFrame(customerList)
     createCsv(df)
 #

@@ -91,6 +91,8 @@ def createDf(customer_data, length):
         for i in range(int(length)-1):
             df = df.append(customer_data["data"]["orders"][i+1], ignore_index=True)
     df.columns = column_name
+    df = df.drop('del',axis=1)
+
     createCsv(df)
 
 def createCsv(df):

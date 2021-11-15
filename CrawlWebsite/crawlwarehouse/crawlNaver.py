@@ -77,6 +77,8 @@ def createDf(length, *args):
     column_name = columnname.naverColumnname
 
     df.columns = column_name
+    df = df.drop('del',axis=1)
+
     createCsv(df)
 
 def createCsv(df):
