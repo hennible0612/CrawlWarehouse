@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Esm, Tmon
+from .models import Esm,Coupang
 
 # Register your models here.
 class QuestionAdmin(admin.ModelAdmin):
@@ -7,4 +7,4 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Esm)
-admin.site.register(Tmon)
+admin.site.register(Coupang)
