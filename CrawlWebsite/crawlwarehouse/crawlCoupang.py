@@ -90,6 +90,7 @@ def getData(soup):
 
 def createDf(customer_data, length):
     dfDict = pd.DataFrame([customer_data[0]["safeNumberDto"]])
+    # dfDict = dfDict['createdAt','modifiedAt','orderId','ordererMobile','receiverMobile','safeNumber','safeNumberSrl']
     if(int(length)>1):
         for i in range(int(length)-1):
             dfDict = dfDict.append(customer_data[i+1]["safeNumberDto"], ignore_index=True)
@@ -103,10 +104,11 @@ def createDf(customer_data, length):
     column_name = columnname.coupangColumnname
 
     df.columns = column_name
-    print(df)
+    createCsv(df)
+
     #dfList 먼저 후 dfDict
     df = df.drop('del', axis=1) # del 삭제
-    createCsv(df)
+
 
 def createCsv(df):
     df.to_csv(userinfo.path +'coupang.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')

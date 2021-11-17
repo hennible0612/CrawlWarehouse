@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\henni\Desktop\CrawlWarehouse\testDB\db.sqlite3</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="db [2]" uuid="2b4a70ec-82ff-4d8d-acdf-fb8d27ed6f41">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\henni\Desktop\CrawlWarehouse\mallDB\db.sqlite3</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

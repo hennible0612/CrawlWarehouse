@@ -17,6 +17,8 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CrawlWebsite" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/testDB" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mallDB" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="inheritedJdk" />
