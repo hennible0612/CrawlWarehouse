@@ -18,7 +18,7 @@ class Coupang(models.Model):
     orderRequirements = models.TextField()
     recipientAddressOne = models.TextField()
     recipientAddressTwo = models.TextField()
-    customerCellNum = models.IntegerField(null=True)
+    customerCellNum2 = models.IntegerField(null=True)
     customerPhoneNum = models.IntegerField()
     recipientName = models.TextField(max_length=255)
     deliverCode = models.TextField(max_length=255)
