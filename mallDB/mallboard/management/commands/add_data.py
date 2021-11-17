@@ -9,11 +9,5 @@ class Command(BaseCommand):
     help = 'A command to add data from and csv file to database'
 
     def handle(self, *args, **options):
-        csv_file = 'coupang.csv'
+        print('hello hello hello 안녕 안녕하')
 
-        df = pd.read_csv(csv_file)
-        df = df.iloc[: , 1:]
-        # print(df)
-        engine = create_engine('sqlite:///db.sqlite3')
-        # #
-        df.to_sql(Coupang._meta.db_table, con=engine, if_exists='replace',index=False)

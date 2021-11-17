@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 class Coupang(models.Model):
-    # id = models.AutoField(primary_key=True)
     deliveredDate = models.TextField(null=True, max_length=255)
     separated = models.TextField(null=True)
     remoteAreaCharge = models.IntegerField(null=True)
@@ -47,3 +46,6 @@ class Coupang(models.Model):
     customerCellNum = models.IntegerField()
     safeNumber = models.IntegerField()
     safeNumberSrl = models.TextField(max_length=255)
+
+    def __str__(self):
+        return self.recipientName
