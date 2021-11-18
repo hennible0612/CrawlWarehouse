@@ -19,7 +19,7 @@ class Coupang(models.Model):
     recipientAddressOne = models.TextField()
     recipientAddressTwo = models.TextField()
     customerCellNum2 = models.TextField(null=True, max_length=255)
-    customerPhoneNum = models.IntegerField()
+    customerPhoneNum = models.TextField(null=True, max_length=255)
     recipientName = models.TextField(max_length=255)
     deliverCode = models.TextField(max_length=255)
     deliverName = models.TextField(max_length=255)
@@ -41,11 +41,11 @@ class Coupang(models.Model):
     hasMultipleItems = models.TextField(max_length=255)
     confirmed = models.TextField(max_length=255)
     createdAt = models.TextField(max_length=255)
-    modifiedAt = models.IntegerField()
+    modifiedAt = models.TextField(max_length=255)
     customerCellNum1 = models.IntegerField()
     customerCellNum = models.IntegerField()
     safeNumber = models.IntegerField()
     safeNumberSrl = models.TextField(max_length=255)
 
     def __str__(self):
-        return self.recipientName
+        return " 주문자 : "+self.customerName + "주소  : " + self.recipientAddress
