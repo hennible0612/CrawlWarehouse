@@ -48,4 +48,4 @@ class Coupang(models.Model):
     safeNumberSrl = models.TextField(max_length=255)
 
     def __str__(self):
-        return " 주문자 : "+self.customerName + "주소  : " + self.recipientAddress
+        return " 주문자 : "+self.customerName + " 주소  : " + self.recipientAddress
