@@ -19,5 +19,13 @@ def coupang(request):
     # return HttpResponse("Coupang에 오신것을 환영합니다.")
     return render(request, 'coupang/coupang_list.html',name)
 
+def customerdetail(request, customer_id):
+    """
+    detail 출력
+    """
+    customer = Coupang.objects.get(id=customer_id)
+    context = {'Customer': customer}
+    return render(request,'coupang/customer_detail.html',context)
+
 def esm(request):
     return HttpResponse("Esm에 오신것을 환경합니다.")

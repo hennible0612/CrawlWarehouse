@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CoupangList</title>
+    <title>쿠팡 주문 목록</title>
 </head>
 <body>
- ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ
+{% if Customer_list %}
+    {% for customer in Customer_list %}
+        <li><a href="/pybo/{{ customer.id }}">주문자: {{ customer.customerName }} 전화번호: {{ customer.customerPhoneNum }} 주소: {{ customer.recipientAddress }}</a></li>
+    {% endfor %}
+{% else %}
+    <p>주문 고객이 없습니다.</p>
+{% endif %}
+
+
+
 </body>
 </html>
