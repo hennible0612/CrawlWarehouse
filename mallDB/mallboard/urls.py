@@ -5,7 +5,7 @@ from . import views
 app_name = 'mallboard'
 
 urlpatterns = [
-    path('',views.mallboard),
+    path('',views.mallboard, name='mallboard'),
     path('esm/',views.esm),
     path('coupang/', views.coupang, name='coupang'),
     path('coupang/<int:customer_id>/',views.customerdetail, name='customerdetail'),

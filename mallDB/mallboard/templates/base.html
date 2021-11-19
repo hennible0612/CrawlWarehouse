@@ -1,0 +1,57 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <!-- mallboard CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>MallBoard</title>
+    <style>
+         li {
+            display: inline;
+         }
+    </style>
+</head>
+<body>
+<!-- 네비게이션바 -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+   <a class="navbar-brand" href="{% url 'mallboard:mallboard' %}">MallBoard</a>
+
+    <!-- 햄버거 버튼, 화면 줄여지면 여기로 링크 다들어감 -->
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- 네비게이션바 링크들 -->
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="{% url 'mallboard:coupang' %}">쿠팡</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'mallboard:interpark' %}">인터파크</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">ESM</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">네이버</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">티몬</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">위맵</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">11번가</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">카카오</a></li>
+{#                #}
+{#                <a class="nav-link" href="#">인터파크</a>#}
+{#                <a class="nav-link" href="#">ESM</a>#}
+{#                <a class="nav-link" href="#">네이버</a>#}
+{#                <a class="nav-link" href="#">티몬</a>#}
+{#                <a class="nav-link" href="#">위맵</a>#}
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- 기본 템플릿 안에 삽입될 내용 Start 즉, 우리가 만든 html 넣을 공간-->
+{% block content %}
+{% endblock %}
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+</body>
+</html>

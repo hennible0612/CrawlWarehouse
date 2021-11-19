@@ -1,5 +1,5 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+{%  extends 'base.html' %}
+{% block content %}
 <div class="container my-3">
     <table class="table">
         <thead>
@@ -28,25 +28,5 @@
         </tbody>
     </table>
 </div>
+{% endblock %}
 
-
-
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>쿠팡 주문 목록</title>#}
-{#</head>#}
-{#<body>#}
-{#{% if Customer_list %}#}
-{#    {% for customer in Customer_list %}#}
-{#        <li><a href="{% url 'mallboard:customerdetail' customer.id %}">주문자: {{ customer.customerName }} 전화번호: {{ customer.customerPhoneNum }} 주소: {{ customer.recipientAddress }}</a></li>#}
-{#    {% endfor %}#}
-{#{% else %}#}
-{#    <p>주문 고객이 없습니다.</p>#}
-{#{% endif %}#}
-{##}
-{##}
-{##}
-{#</body>#}
-{#</html>#}

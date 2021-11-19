@@ -1,5 +1,5 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+{%  extends 'base.html' %}
+{% block content %} <!-- 여기서 부터 내가쓴 내용이다. -->
 <div class="container my-3">
     <table class="table">
         <thead>
@@ -33,3 +33,4 @@
         </tbody>
     </table>
 </div>
+{% endblock %}

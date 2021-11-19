@@ -1,14 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Coupang, Interpark #쿠팡 모델 가져옴
-
+from django.core.paginator import Paginator
 
 
 
 # Create your views here.
 
 def mallboard(request):
-    return HttpResponse("mallboard에 오신것을 환영합니다.")
+    return render(request,'base.html')
 
 def coupang(request):
     """
