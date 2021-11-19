@@ -53,14 +53,14 @@ class Coupang(models.Model):
 class Interpark(models.Model):
     orderdate = models.TextField(max_length=255)
     recipientAddress = models.TextField(max_length=255)
-    serviceUsageFee = models.IntegerField()
+    serviceUsageFee = models.TextField(max_length=255)
     callsafeYn = models.TextField(max_length=255)
     clmreqCnt = models.IntegerField()
     crmCouponDiscountAmount = models.IntegerField()
     currentOrdclmprdStat = models.IntegerField()
     currentOrdclmprdStatNm = models.TextField(max_length=255)
-    shippingFee = models.IntegerField()
-    orderAmount1 = models.IntegerField()
+    shippingFee = models.TextField(max_length=255)
+    orderAmount1 = models.TextField(max_length=255)
     orderType = models.TextField(max_length=255)
     delvAttbt = models.IntegerField()
     delvAttbtNm = models.TextField(max_length=255)
@@ -70,7 +70,7 @@ class Interpark(models.Model):
     delvwhPreDate = models.TextField(max_length=255)
     dtlAddr = models.TextField(max_length=255)
     dtlAddrDoro = models.TextField(max_length=255)
-    couponAppliedAmount = models.IntegerField()
+    couponAppliedAmount = models.TextField(max_length=255)
     discountAmount = models.IntegerField()
     expectedSellingFee = models.IntegerField()
     expectedSettlementAmt = models.IntegerField()
@@ -102,7 +102,7 @@ class Interpark(models.Model):
     customerCellNum = models.TextField(max_length=255)
     customerName = models.TextField(max_length=255)
     ordSeq = models.IntegerField()
-    recipientCellNum = models.TextField(max_length=255)
+    customerCellNum2 = models.TextField(null=True, max_length=255)
     ordclmDts = models.TextField(max_length=255)
     ordclmNo = models.TextField(max_length=255)
     paidDate = models.TextField(max_length=255)
@@ -131,3 +131,6 @@ class Interpark(models.Model):
     postCode = models.TextField(max_length=255)
     zipNo = models.TextField(max_length=255)
     zipNoDoro = models.TextField(max_length=255)
+
+    def __str__(self):
+        return " 주문자 : "+self.customerName + " 주소  : " + self.recipientAddress

@@ -29,5 +29,10 @@ def customerdetail(request, customer_id):
     context = {'customer': customer} # ' ' 사이에있는 이름으로 html에서 접근해야함
     return render(request,'coupang/customer_detail.html',context)
 
+def interpark(request):
+
+    return render(request, 'interpark/interpark_list.html')
+
+
 def esm(request):
     return HttpResponse("Esm에 오신것을 환경합니다.")

@@ -96,7 +96,7 @@ def createDf(customer_data, length):
     createCsv(df)
 
 def createCsv(df):
-    df.to_csv(userinfo.path +'Interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+    df.to_csv(userinfo.path +'interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
 
 
 
