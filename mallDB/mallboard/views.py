@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Coupang #쿠팡 모델 가져옴
 
@@ -14,6 +14,7 @@ def coupang(request):
     """
     coupang 주문 목록 출력
     """
+
     customer_list = Coupang.objects.order_by('id')
     name = {'Customer_list': customer_list}
     # return HttpResponse("Coupang에 오신것을 환영합니다.")
@@ -23,8 +24,9 @@ def customerdetail(request, customer_id):
     """
     detail 출력
     """
-    customer = Coupang.objects.get(id=customer_id)
-    context = {'Customer': customer}
+    customer = get_object_or_404(Coupang, pk=customer_id)
+    # customer = Coupang.objects.get(id=customer_id)
+    context = {'customer': customer} # ' ' 사이에있는 이름으로 html에서 접근해야함
     return render(request,'coupang/customer_detail.html',context)
 
 def esm(request):

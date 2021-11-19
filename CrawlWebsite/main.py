@@ -3,10 +3,10 @@ from crawlwarehouse import crawlInterpark, crawlEsm,crawlCoupang,crawlNaver,craw
 import crawlEleven
 # crawlEleven.crawlEleven()
 # crawlNaver.crawlNaver()
-crawlEsm.crawlEsm()
-# crawlInterpark.crawlInterpark()
+# crawlEsm.crawlEsm()
+crawlInterpark.crawlInterpark()
 # crawlWemap.crawlWemap()
-# crawlCoupang.crawlCoupang()
+crawlCoupang.crawlCoupang()
 # crawlTmon.crawlTmon()
 
 import requests

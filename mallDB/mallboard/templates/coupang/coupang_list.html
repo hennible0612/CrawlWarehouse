@@ -1,19 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>쿠팡 주문 목록</title>
-</head>
-<body>
-{% if Customer_list %}
-    {% for customer in Customer_list %}
-        <li><a href="/pybo/{{ customer.id }}">주문자: {{ customer.customerName }} 전화번호: {{ customer.customerPhoneNum }} 주소: {{ customer.recipientAddress }}</a></li>
-    {% endfor %}
-{% else %}
-    <p>주문 고객이 없습니다.</p>
-{% endif %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+<div class="container my-3">
+    <table class="table">
+        <thead>
+            <tr class="thead-dark">
+                <th>ID</th>
+                <th>주문자</th>
+                <th>전화번호</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if Customer_list %}
+            {% for customer in Customer_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <a href="{% url 'mallboard:customerdetail' customer.id %}">{{ customer.customerName }}</a>
+                </td>
+                <td> {{ customer.customerPhoneNum }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <p>주문 고객이 없습니다.</p>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
 
 
 
-</body>
-</html>
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>쿠팡 주문 목록</title>#}
+{#</head>#}
+{#<body>#}
+{#{% if Customer_list %}#}
+{#    {% for customer in Customer_list %}#}
+{#        <li><a href="{% url 'mallboard:customerdetail' customer.id %}">주문자: {{ customer.customerName }} 전화번호: {{ customer.customerPhoneNum }} 주소: {{ customer.recipientAddress }}</a></li>#}
+{#    {% endfor %}#}
+{#{% else %}#}
+{#    <p>주문 고객이 없습니다.</p>#}
+{#{% endif %}#}
+{##}
+{##}
+{##}
+{#</body>#}
+{#</html>#}
