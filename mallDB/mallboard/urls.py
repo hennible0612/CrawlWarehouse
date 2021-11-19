@@ -6,9 +6,12 @@ app_name = 'mallboard'
 
 urlpatterns = [
     path('',views.mallboard),
-    path('coupang/', views.coupang, name='coupang'),
     path('esm/',views.esm),
-    path('interpark/', views.interpark),
+    path('coupang/', views.coupang, name='coupang'),
+    path('coupang/<int:customer_id>/',views.customerdetail, name='customerdetail'),
 
-    path('coupang/<int:customer_id>/',views.customerdetail, name='customerdetail')
+
+    path('interpark/', views.interpark, name='interpark'),
+    path('interpark/<int:customer_id>/', views.interparkcustomerdetail, name='interparkcustomerdetail'),
+
 ]

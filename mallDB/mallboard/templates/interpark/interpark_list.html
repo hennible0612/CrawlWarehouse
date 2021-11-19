@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+<div class="container my-3">
+    <table class="table">
+        <thead>
+            <tr class="thead-dark">
+                <th>ID</th>
+                <th>주문자</th>
+                <th>받는 사람</th>
+                <th>전화번호</th>
+                <th>주문일자</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if Customer_list %}
+            {% for customer in Customer_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
 
-</body>
-</html>
+                <td>
+                    <a href="{% url 'mallboard:interparkcustomerdetail' customer.id %}">{{ customer.customerName }}</a>
+                </td>
+                <td>{{ customer.recipientName }}</td>
+                <td> {{ customer.customerPhoneNum }}</td>
+                <td>{{ customer.paidDate }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <p>주문 고객이 없습니다.</p>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
