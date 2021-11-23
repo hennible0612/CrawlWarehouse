@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Coupang(models.Model):
     deliveredDate = models.TextField(null=True, max_length=255)
@@ -51,7 +52,7 @@ class Coupang(models.Model):
         return " 주문자 : "+self.customerName + " 주소  : " + self.recipientAddress
 
 class Interpark(models.Model):
-    orderdate = models.TextField(max_length=255)
+    orderDate = models.DateField()
     recipientAddress = models.TextField(max_length=255)
     serviceUsageFee = models.TextField(max_length=255)
     callsafeYn = models.TextField(max_length=255)
