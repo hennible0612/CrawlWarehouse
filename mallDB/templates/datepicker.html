@@ -1,0 +1,55 @@
+<div class="input-group input-daterange" >
+    <input type="text" class="form-control" id="firstdatepicker" value="">
+
+    <div class="input-group-addon"><b>TO</b></div>
+    <input type="text" class="form-control" id="lastdatepicker" value="">
+
+</div>
+
+
+<script>
+
+    $('#firstdatepicker').datepicker({
+        format:"yyyy-mm-dd",
+        language : "ko",
+        todayBtn:  1,
+        autoclose: true
+    })
+    $('#firstdatepicker').datepicker('setDate', new Date(new Date()));
+    $('#firstdatepicker').on('dp.change', function (selected) {
+    end.data("DateTimePicker").minDate(selected.date);
+ });
+
+
+    {#on("changeDate", function (e) {#}
+    {#    if($('#firstdatepicker').val() > $('#lastdatepicker').val()){#}
+    {#        alert("출발일 보다 이전 날짜를 선택해 주세요");#}
+    {#    }#}
+
+
+    $('#lastdatepicker').datepicker({
+        format:"yyyy-mm-dd",
+        language : "ko",
+        autoclose: true
+    })
+    $('#lastdatepicker').datepicker('setDate', new Date(new Date()));
+    $('#lastdatepicker').on('dp.change', function (selected) {
+    start.data("DateTimePicker").maxDate(selected.date);
+ });
+
+
+    {#on("changeDate", function (e) {#}
+    {#    if($('#firstdatepicker').val() > $('#lastdatepicker').val()){#}
+    {#        alert("도착일 보다 나중 날짜를 선택해 주세요");#}
+    {#    }#}
+
+
+{##}
+{#    $('#firstdatepicker, #lastdatepicker ').datepicker({#}
+{#        format:"yyyy-mm-dd",#}
+{#        autoclose: true,#}
+{#        todayHighlight: true,#}
+{#        language : "ko"#}
+{#    });#}
+
+</script>

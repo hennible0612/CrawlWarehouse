@@ -1,0 +1,81 @@
+{%  extends 'base.html' %}
+{% load mallboard_filter %}
+{% block content %} <!-- 여기서 부터 내가쓴 내용이다. -->
+<div class="container my-3">
+    <table class="table">
+        <thead>
+            <tr class="thead-dark">
+                <th>ID</th>
+                <th>주문자</th>
+                <th>받는 사람</th>
+                <th>전화번호</th>
+                <th>주문일자</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if Customer_list %}
+            {% for customer in Customer_list %}
+            <tr>
+
+                <td>
+                    <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
+                    {{ Customer_list.paginator.count|sub:Customer_list.start_index|sub:forloop.counter0|add:1 }}
+                </td>
+                <td>
+                    <a href="{% url 'mallboard:interparkcustomerdetail' customer.id %}">{{ customer.customerName }}</a>
+                </td>
+                <td>{{ customer.recipientName }}</td>
+                <td> {{ customer.customerPhoneNum }}</td>
+                <td>{{ customer.paidDate }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <p>주문 고객이 없습니다.</p>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center">
+        <!-- 이전페이지 -->
+        {% if Customer_list.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ Customer_list.previous_page_number }}">이전</a>
+            <!-- 기존 ?page=1에서 값을 읽어 폼에 설정할 수있도록 아래처럼 변경 -->
+
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+        {% endif %}
+        <!-- 페이지리스트 -->
+        {% for page_number in Customer_list.paginator.page_range %}
+        {% if page_number >= Customer_list.number|add:-5 and page_number <= Customer_list.number|add:5 %} <!--페이지수의 페이지수 조절 -->
+            {% if page_number == Customer_list.number %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+        {% endif %}
+        {% endfor %}
+        <!-- 다음페이지 -->
+        {% if Customer_list.has_next %}
+        <li class="page-item">
+           <a class="page-link" href="?page={{ Customer_list.next_page_number }}">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+        {% endif %}
+    </ul>
+    <!-- 페이징처리 끝 -->
+
+</div>
+{% endblock %}
