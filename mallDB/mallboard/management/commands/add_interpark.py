@@ -14,7 +14,7 @@ class Command(BaseCommand):
             reader = csv.DictReader(csvfile)
             for row in reader:
                 print(row)
-                p = Interpark(orderdate=row["orderdate"],recipientAddress=row["recipientAddress"],serviceUsageFee=["serviceUsageFee"],callsafeYn=["callsafeYn"],
+                p = Interpark(orderDate=row["orderDate"],recipientAddress=row["recipientAddress"],serviceUsageFee=["serviceUsageFee"],callsafeYn=["callsafeYn"],
                               clmreqCnt=row["clmreqCnt"],crmCouponDiscountAmount=row["crmCouponDiscountAmount"],currentOrdclmprdStat=row["currentOrdclmprdStat"],
                               currentOrdclmprdStatNm=row["currentOrdclmprdStatNm"],shippingFee=["shippingFee"],orderAmount1=["orderAmount1"],orderType=["orderType"],
                               delvAttbt=row["delvAttbt"], delvAttbtNm=row["delvAttbtNm"],orderRequirements=row["orderRequirements"],delvWhDt=["delvWhDt"],delvwhOrdNo=["delvwhOrdNo"],
