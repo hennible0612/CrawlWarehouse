@@ -21,5 +21,6 @@ from mallboard import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mallboard/', include('mallboard.urls')),
+    path('common/', include('common.urls')),
 ]
 
