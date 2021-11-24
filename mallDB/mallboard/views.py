@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Coupang, Interpark #쿠팡 모델 가져옴
@@ -7,9 +8,11 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 
+@login_required(login_url='common:login')
 def mallboard(request):
     return render(request,'base.html')
 
+@login_required(login_url='common:login')
 def interpark(request):
     """
     interpark 주문 목록 출력
@@ -28,15 +31,28 @@ def interpark(request):
 
     return render(request, 'interpark/interpark_list.html',name)
 
-def interparkdatefilter(request):
+@login_required(login_url='common:login')
+def interparkdatefilter(request,firstdate):
+    # if request.is_ajax():
+    #     return HttpResponse("AJAX ")
 
-    # firstdate = request.GET.get('firstdate')
-    # seconddate = request.GET.get('seconddate')
-    #
-    # print(firstdate)
-    return HttpResponse("firstdateseconddate")
+    # elif (request.method == "POST"):
+    #     return HttpResponse("POST" )
+    # elif (request.method == "GET"):
+    #     return HttpResponse("GET")
+    # else:
+    #     return HttpResponse("")
+    firstdate=request.GET.get('firstdate')
+    print('firstdate with GET: ',firstdate)
+
+    firstdate = request.POST['firstdate']
+
+    print("firstdate:",firstdate)
 
 
+    return HttpResponse("firstdates : " + firstdate)
+
+@login_required(login_url='common:login')
 def interparkcustomerdetail(request, customer_id):
     """
     detail 출력
@@ -46,7 +62,7 @@ def interparkcustomerdetail(request, customer_id):
     context = {'customer': customer} # ' ' 사이에있는 이름으로 html에서 접근해야함
     return render(request,'interpark/interpark_customer_detail.html',context)
 
-
+@login_required(login_url='common:login')
 def coupang(request):
     """
     coupang 주문 목록 출력
@@ -57,6 +73,7 @@ def coupang(request):
     # return HttpResponse("Coupang에 오신것을 환영합니다.")
     return render(request, 'coupang/coupang_list.html',name)
 
+@login_required(login_url='common:login')
 def customerdetail(request, customer_id):
     """
     detail 출력
@@ -65,6 +82,6 @@ def customerdetail(request, customer_id):
     # customer = Coupang.objects.get(id=customer_id)
     context = {'customer': customer} # ' ' 사이에있는 이름으로 html에서 접근해야함
     return render(request,'coupang/customer_detail.html',context)
-
+@login_required(login_url='common:login')
 def esm(request):
     return HttpResponse("Esm에 오신것을 환경합니다.")

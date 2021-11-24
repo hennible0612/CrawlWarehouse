@@ -1,55 +1,46 @@
 <div class="input-group input-daterange" >
-    <input type="text" class="form-control" name="firstdate" id="firstdatepicker" value="">
 
-    <div class="input-group-addon"><b>TO</b></div>
-    <input type="text" class="form-control" name="seconddate" id="lastdatepicker" value="">
+
+{#    <form class="form-control" name="firstdate" id="firstdatepicker"></form>#}
+{#    <div class="input-group-addon"><b>TO</b></div>#}
+{##}
+{#    <form class="form-control" name="firstdate" id="lastdatepicker"></form>#}
+
+    <form action="{% url 'mallboard:interparkdatefilter'%}" method="post">
+        {% csrf_token %}
+        <input type="text" class="firstdate" name="firstdate" id="firstdate" value="">
+
+        <input type="text" class="seconddate" name="seconddate" id="seconddate" value="">
+
+         <input class="nav-link" type="submit">필터</input>
+</form>
+
 
 </div>
-
-
 <script>
-
-    $('#firstdatepicker').datepicker({
+    $('#firstdate').datepicker({
         format:"yyyy-mm-dd",
         language : "ko",
         todayBtn:  1,
         autoclose: true
     })
-    $('#firstdatepicker').datepicker('setDate', new Date(new Date()));
-    $('#firstdatepicker').on('dp.change', function (selected) {
+    $('#firstdate').datepicker('setDate', new Date(new Date()));
+    $('#firstdate').on('dp.change', function (selected) {
     end.data("DateTimePicker").minDate(selected.date);
  });
 
-
-    {#on("changeDate", function (e) {#}
-    {#    if($('#firstdatepicker').val() > $('#lastdatepicker').val()){#}
-    {#        alert("출발일 보다 이전 날짜를 선택해 주세요");#}
-    {#    }#}
-
-
-    $('#lastdatepicker').datepicker({
+    $('#seconddate').datepicker({
         format:"yyyy-mm-dd",
         language : "ko",
         autoclose: true
     })
-    $('#lastdatepicker').datepicker('setDate', new Date(new Date()));
-    $('#lastdatepicker').on('dp.change', function (selected) {
+    $('#seconddate').datepicker('setDate', new Date(new Date()));
+    $('#seconddate').on('dp.change', function (selected) {
     start.data("DateTimePicker").maxDate(selected.date);
  });
 
-
-    {#on("changeDate", function (e) {#}
-    {#    if($('#firstdatepicker').val() > $('#lastdatepicker').val()){#}
-    {#        alert("도착일 보다 나중 날짜를 선택해 주세요");#}
-    {#    }#}
-
-
-{##}
-{#    $('#firstdatepicker, #lastdatepicker ').datepicker({#}
-{#        format:"yyyy-mm-dd",#}
-{#        autoclose: true,#}
-{#        todayHighlight: true,#}
-{#        language : "ko"#}
-{#    });#}
-
+{#$("#firstdate").val($(".firstdate").val());#}
+{#$("#seconddate").val($(".seconddate").val());#}
+$("#firstdate").val($(".firstdate").val());
+$("#seconddate").val($(".seconddate").val());
 </script>
