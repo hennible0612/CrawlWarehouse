@@ -17,10 +17,7 @@ def interpark(request):
     # 입력 파라미터
     page = request.GET.get('page', '1')
 
-
-
     customer_list = Interpark.objects.order_by('id')
-
 
     paginator = Paginator(customer_list, 10)  # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
@@ -30,6 +27,15 @@ def interpark(request):
     name = {'Customer_list': page_obj}
 
     return render(request, 'interpark/interpark_list.html',name)
+
+def interparkdatefilter(request):
+
+    # firstdate = request.GET.get('firstdate')
+    # seconddate = request.GET.get('seconddate')
+    #
+    # print(firstdate)
+    return HttpResponse("firstdateseconddate")
+
 
 def interparkcustomerdetail(request, customer_id):
     """

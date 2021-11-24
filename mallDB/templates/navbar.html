@@ -14,7 +14,7 @@
 
             <li class="nav-item"><a class="nav-link" href="{% url 'mallboard:coupang' %}">쿠팡</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'mallboard:interpark' %}">인터파크</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">ESM</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'mallboard:esm' %}">ESM</a></li>
             <li class="nav-item"><a class="nav-link" href="#">네이버</a></li>
             <li class="nav-item"><a class="nav-link" href="#">티몬</a></li>
             <li class="nav-item"><a class="nav-link" href="#">위맵</a></li>
@@ -24,7 +24,7 @@
             <li class="nav-item">
                 {% include "datepicker.html" %}
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">필터</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'mallboard:interparkdatefilter'%}">필터</a></li>
 {#            {% if user.is_authenticated %}<!--만약 로그인이 되어있다면 -->#}
             <a class="nav-link" href="{% url 'common:logout' %}">{{ user.username }} (로그아웃)</a>
             {% else %}

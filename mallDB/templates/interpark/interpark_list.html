@@ -1,6 +1,7 @@
 {%  extends 'base.html' %}
 {% load mallboard_filter %}
 {% block content %} <!-- 여기서 부터 내가쓴 내용이다. -->
+{% if user.is_authenticated %}
 <div class="container my-3">
     <!-- 검색 -->
     <div class="row justify-content-end my-3">
@@ -88,4 +89,6 @@
     <!-- 페이징처리 끝 -->
 
 </div>
+{% else %}
+{% endif %}
 {% endblock %}
