@@ -9,5 +9,3 @@ crawlInterpark.crawlInterpark()
 crawlCoupang.crawlCoupang()
 # crawlTmon.crawlTmon()
 
-import requests
-# url = '/v2/providers/openapi/apis                                                                                                                                                       api/v4/vendors/{vendorId}/ordersheets'

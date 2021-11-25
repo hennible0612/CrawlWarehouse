@@ -27,7 +27,6 @@
             {% if Customer_list %}
             {% for customer in Customer_list %}
             <tr>
-
                 <td>
                     <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
                     {{ Customer_list.paginator.count|sub:Customer_list.start_index|sub:forloop.counter0|add:1 }}

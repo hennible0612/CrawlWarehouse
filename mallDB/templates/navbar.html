@@ -19,7 +19,7 @@
             <li class="nav-item"><a class="nav-link" href="#">위맵</a></li>
             <li class="nav-item"><a class="nav-link" href="#">11번가</a></li>
             <li class="nav-item"><a class="nav-link" href="#">카카오</a></li>
-            <li class="nav-item"><a class="nav-link" href="#"><b>신규주문조회</b></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'mallboard:getneworder' %}"><b>신규주문조회</b></a></li>
             <li class="nav-item">
                 {% include "datepicker.html" %}
             </li>

@@ -16,5 +16,7 @@ urlpatterns = [
     path('interpark/', views.interpark, name='interpark'),
     path('interpark/<int:customer_id>/', views.interparkcustomerdetail, name='interparkcustomerdetail'),
 
-    path('mallboard/interparkdatefilter', views.interparkdatefilter, name='interparkdatefilter')
+    path('mallboard/interparkdatefilter', views.interparkdatefilter, name='interparkdatefilter'),
+
+    path('mallboard/getneworder/',views.getneworder, name="getneworder")
 ]
