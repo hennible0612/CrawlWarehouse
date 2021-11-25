@@ -38,23 +38,22 @@ def interpark(request):
     return render(request, 'interpark/interpark_list.html',name)
 
 @login_required(login_url='common:login')
-# def interparkdatefilter(request,firstdate):
 def interparkdatefilter(request):
+# def interparkdatefilter(request):
 
     firstdate = request.GET.get('firstdate')
-    firstdate = request.GET.get('seconddate')
-    print('firstdate with GET: ',firstdate)
+    # seconddate = request.GET.get('seconddate')
+    # print('firstdate with GET: ',firstdate)
     # page = request.GET.get('page', '1')
     #
     #
-    firstdate = request.POST['firstdate']
-    seconddate = request.POST['seconddate']
-    customer_list = Interpark.objects.filter(orderDate__range=[firstdate, seconddate])
+    # customer_list = Interpark.objects.filter(orderDate__range=[firstdate, seconddate])
 
-    paginator = Paginator(customer_list, 10)  # 페이지당 10개씩 보여주기
-    page_obj = paginator.get_page(page)
-    name = {'Customer_list': page_obj, 'page': page}
-    return render(request, 'interpark/interpark_list.html', name)
+    # paginator = Paginator(customer_list, 10)  # 페이지당 10개씩 보여주기
+    # page_obj = paginator.get_page(page)
+    # name = {'Customer_list': page_obj, 'page': page}
+    # return render(request, 'interpark/interpark_list.html', name)
+    return HttpResponse("firstDate" + firstdate)
     #
     #
     # page = request.GET.get('page', '1')
