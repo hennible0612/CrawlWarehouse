@@ -47,13 +47,13 @@
         </tbody>
     </table>
     <!-- 페이징처리 시작 -->
+
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
         {% if Customer_list.has_previous %}
         <li class="page-item">
             <a class="page-link" href="?page={{ Customer_list.previous_page_number }}">이전</a>
             <!-- 기존 ?page=1에서 값을 읽어 폼에 설정할 수있도록 아래처럼 변경 -->
-
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -65,6 +65,7 @@
         {% if page_number >= Customer_list.number|add:-5 and page_number <= Customer_list.number|add:5 %} <!--페이지수의 페이지수 조절 -->
             {% if page_number == Customer_list.number %}
             <li class="page-item active" aria-current="page">
+
                 <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
             </li>
             {% else %}

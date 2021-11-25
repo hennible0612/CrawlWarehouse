@@ -6,6 +6,6 @@ import crawlEleven
 # crawlEsm.crawlEsm()
 crawlInterpark.crawlInterpark()
 # crawlWemap.crawlWemap()
-crawlCoupang.crawlCoupang()
+# crawlCoupang.crawlCoupang()
 # crawlTmon.crawlTmon()
 

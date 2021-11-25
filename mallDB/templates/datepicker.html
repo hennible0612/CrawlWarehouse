@@ -5,15 +5,7 @@
 {#    <div class="input-group-addon"><b>TO</b></div>#}
 {##}
 {#    <form class="form-control" name="firstdate" id="lastdatepicker"></form>#}
-{#<form action="{% url 'mallboard:interparkdatefilter' %}" method="get">#}
-{#        {% csrf_token %}#}
-{#        <input type="text" class="firstdate" name="firstdate" id="firstdate" value="">#}
-{##}
-{#        <input type="text" class="seconddate" name="seconddate" id="seconddate" value="">#}
-{##}
-{#         <input class="nav-link" type="submit">#}
-{#</form>#}
-    <form action="{% url 'mallboard:interparkdatefilter' %}" method="post">
+<form action="{% url 'mallboard:interparkdatefilter' %}" method="get">
         {% csrf_token %}
         <input type="text" class="firstdate" name="firstdate" id="firstdate" value="">
 
@@ -21,6 +13,14 @@
 
          <input class="nav-link" type="submit">
 </form>
+{#    <form action="{% url 'mallboard:interparkdatefilter' %}" method="post">#}
+{#        {% csrf_token %}#}
+{#        <input type="text" class="firstdate" name="firstdate" id="firstdate" value="">#}
+{##}
+{#        <input type="text" class="seconddate" name="seconddate" id="seconddate" value="">#}
+{##}
+{#         <input class="nav-link" type="submit">#}
+{#</form>#}
 
 
 </div>

@@ -1,10 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+
 from .models import Coupang, Interpark #쿠팡 모델 가져옴
 from django.core.paginator import Paginator
-# from function import addInterpark
+# from crawlwarehouse import crawlInterpark
 
+# from function import addInterpark
+# from CrawlWebsite import *
 
 # Create your views here.
 
@@ -38,19 +41,32 @@ def interpark(request):
 # def interparkdatefilter(request,firstdate):
 def interparkdatefilter(request):
 
-    # firstdate = request.GET.get('firstdate')
-    # print('firstdate with GET: ',firstdate)
-    page = request.GET.get('page', '1')
-
-
+    firstdate = request.GET.get('firstdate')
+    firstdate = request.GET.get('seconddate')
+    print('firstdate with GET: ',firstdate)
+    # page = request.GET.get('page', '1')
+    #
+    #
     firstdate = request.POST['firstdate']
     seconddate = request.POST['seconddate']
     customer_list = Interpark.objects.filter(orderDate__range=[firstdate, seconddate])
 
     paginator = Paginator(customer_list, 10)  # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
-    name = {'Customer_list': page_obj}
+    name = {'Customer_list': page_obj, 'page': page}
     return render(request, 'interpark/interpark_list.html', name)
+    #
+    #
+    # page = request.GET.get('page', '1')
+    # firstdate = request.POST['firstdate']
+    # seconddate = request.POST['seconddate']
+    # customer_list = Interpark.objects.filter(orderDate__range=[firstdate, seconddate])
+    #
+    # paginator = Paginator(customer_list, 10)  # 페이지당 10개씩 보여주기
+    # page_obj = paginator.get_page(page)
+    # name = {'Customer_list': page_obj, 'page': page}
+    # return render(request, 'interpark/interpark_list.html', name)
+
 
 
 
@@ -96,10 +112,10 @@ import csv
 @login_required(login_url='common:login')
 def getneworder(request):
     # addInterpark()
+    # crawlInterpark.crawlInterpark()
     with open('interpark.csv', encoding='UTF8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            print(row)
             p = Interpark(orderDate=row["orderDate"] ,recipientAddress=row["recipientAddress"]
                           ,serviceUsageFee=["serviceUsageFee"] ,callsafeYn=["callsafeYn"],
                           clmreqCnt=row["clmreqCnt"] ,crmCouponDiscountAmount=row["crmCouponDiscountAmount"]
@@ -135,9 +151,7 @@ def getneworder(request):
                           ,specialYn=row["specialYn"] ,todayDelvYn=row["todayDelvYn"],
                           totalFee=row["totalFee"] ,totalPrice=row["totalPrice"] ,totalRecCnt=row["totalRecCnt"], zipAddr=row["zipAddr"] ,zipAddrDoro=row["zipAddrDoro"] ,postCode=row["postCode"],
                           zipNo=row["zipNo"] ,zipNoDoro=row["zipNoDoro"]
-
-
                           )
-            p.save()
+            # p.save()
 
     return interpark(request)
