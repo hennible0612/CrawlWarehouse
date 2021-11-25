@@ -27,6 +27,7 @@
             {% if Customer_list %}
             {% for customer in Customer_list %}
             <tr>
+
                 <td>
                     <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
                     {{ Customer_list.paginator.count|sub:Customer_list.start_index|sub:forloop.counter0|add:1 }}
@@ -46,10 +47,12 @@
             {% endif %}
         </tbody>
     </table>
+
     <!-- 페이징처리 시작 -->
 
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
+
         {% if Customer_list.has_previous %}
         <li class="page-item">
             <a class="page-link" href="?page={{ Customer_list.previous_page_number }}">이전</a>
