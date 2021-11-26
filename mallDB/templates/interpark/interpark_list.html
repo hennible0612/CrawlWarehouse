@@ -45,7 +45,7 @@
         <!-- 이전페이지 -->
         {% if Customer_list.has_previous %} <!-- 이전 페이지가 있는지 체크-->
         <li class="page-item">
-            <a class="page-link" href="?page={{ Customer_list.previous_page_number }}">이전</a> <!--이전 페이지 있으면 이전페이지 이전 버튼 활성화 -->
+            <a class="page-link" href="?page={{ Customer_list.previous_page_number }}&firstdate={{ firstdate }}&seconddate={{ seconddate }}">이전</a> <!--이전 페이지 있으면 이전페이지 이전 버튼 활성화 -->
             <!-- 기존 ?page=1에서 값을 읽어 폼에 설정할 수있도록 아래처럼 변경 -->
         </li>
         {% else %}
@@ -58,17 +58,14 @@
         <!-- 페이지리스트 -->
         {% for page_number in Customer_list.paginator.page_range %}
             {% if page_number == Customer_list.number %}
-
-                    <li class="page-item active" aria-current="page"> <!-- 현재페이지와 같으면 해당하는 링크 보여줌 -->
+                    <li class="page-item active" aria-current="page"> <!-- 현재페이지와 같으면 highlight -->
                         <a class="page-link" href="?page={{ page_number }}&firstdate={{ firstdate }}&seconddate={{ seconddate }}">{{ page_number }}</a>
                     </li>
-
             {% else %}
             <li class="page-item">
-                    <li class="page-item active" aria-current="page"> <!-- 현재페이지와 같으면 해당하는 링크 보여줌 -->
+                    <li class="page-item" aria-current="page"> <!-- 현재페이지와 같으면 해당하는 링크 보여줌 -->
                         <a class="page-link" href="?page={{ page_number }}&firstdate={{ firstdate }}&seconddate={{ seconddate }}">{{ page_number }}</a>
                     </li>
-                    <a class="page-link" href="?page={{ page_number }}&firstdate={{ firstdate }}&seconddate={{ seconddate }}">{{ page_number }}</a>
             </li>
             {% endif %}
         {% endfor %}
@@ -77,7 +74,7 @@
         <!-- 다음페이지 -->
         {% if Customer_list.has_next %}
         <li class="page-item">
-           <a class="page-link" href="?page={{ Customer_list.next_page_number }}">다음</a>
+           <a class="page-link" href="?page={{ Customer_list.next_page_number }}&firstdate={{ firstdate }}&seconddate={{ seconddate }}">다음</a>
         </li>
         {% else %}
         <li class="page-item disabled">
