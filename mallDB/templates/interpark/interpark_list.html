@@ -3,15 +3,6 @@
 {% block content %} <!-- 여기서 부터 내가쓴 내용이다. -->
 {#{% if user.is_authenticated %}#}
 <div class="container my-3">
-    <!-- 검색 -->
-    <div class="row justify-content-end my-3">
-        <div class="col-4 input-group">
-            <input type="text" class="form-control kw" value="{{ kw|default_if_none:'' }}">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
-            </div>
-        </div>
-    </div>
 
     <table class="table">
         <thead>
@@ -30,10 +21,11 @@
 
                 <td>
                     <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
+                    <!-- 페이징 처리할때 페이지목록이 10개이상 넘어가면 5개 단위로 짜름-->
                     {{ Customer_list.paginator.count|sub:Customer_list.start_index|sub:forloop.counter0|add:1 }}
                 </td>
                 <td>
-                    <a href="{% url 'mallboard:interparkcustomerdetail' customer.id %}">{{ customer.customerName }}</a>
+                    <a href="{% url 'mallboard:interparkcustomerdetail' customer.id %}">{{ customer.customerName }}</a> <!-- interparkcustomerdetail view가 인자로 customer.id를 받는다. -->
                 </td>
                 <td>{{ customer.recipientName }}</td>
                 <td> {{ customer.customerPhoneNum }}</td>
@@ -49,11 +41,9 @@
     </table>
 
     <!-- 페이징처리 시작 -->
-
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
-
-        {% if Customer_list.has_previous %}
+        {% if Customer_list.has_previous %} <!-- 이전 페이지가 있는지 체크-->
         <li class="page-item">
             <a class="page-link" href="?page={{ Customer_list.previous_page_number }}">이전</a>
             <!-- 기존 ?page=1에서 값을 읽어 폼에 설정할 수있도록 아래처럼 변경 -->

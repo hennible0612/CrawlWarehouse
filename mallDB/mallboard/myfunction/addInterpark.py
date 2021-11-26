@@ -4,9 +4,9 @@ from mallboard.models import Interpark
 
 
 with open('interpark.csv', encoding='UTF8') as csvfile:
+    print("실행됨")
     reader = csv.DictReader(csvfile)
     for row in reader:
-        print(row)
         p = Interpark(orderDate=row["orderDate"] ,recipientAddress=row["recipientAddress"]
                       ,serviceUsageFee=["serviceUsageFee"] ,callsafeYn=["callsafeYn"],
                       clmreqCnt=row["clmreqCnt"] ,crmCouponDiscountAmount=row["crmCouponDiscountAmount"]
@@ -45,4 +45,4 @@ with open('interpark.csv', encoding='UTF8') as csvfile:
 
 
                       )
-        p.save()
+        # p.save()

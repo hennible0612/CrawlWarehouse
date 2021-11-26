@@ -135,3 +135,6 @@ class Interpark(models.Model):
 
     def __str__(self):
         return " 주문자 : "+self.customerName + " 주소  : " + self.recipientAddress
+
+    class Meta:
+       ordering = ['-id']
