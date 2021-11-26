@@ -58,13 +58,17 @@
         <!-- 페이지리스트 -->
         {% for page_number in Customer_list.paginator.page_range %}
             {% if page_number == Customer_list.number %}
-            <li class="page-item active" aria-current="page"> <!-- 현재페이지와 같으면 해당하는 링크 보여줌 -->
 
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-            </li>
+                    <li class="page-item active" aria-current="page"> <!-- 현재페이지와 같으면 해당하는 링크 보여줌 -->
+                        <a class="page-link" href="?page={{ page_number }}&firstdate={{ firstdate }}&seconddate={{ seconddate }}">{{ page_number }}</a>
+                    </li>
+
             {% else %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                    <li class="page-item active" aria-current="page"> <!-- 현재페이지와 같으면 해당하는 링크 보여줌 -->
+                        <a class="page-link" href="?page={{ page_number }}&firstdate={{ firstdate }}&seconddate={{ seconddate }}">{{ page_number }}</a>
+                    </li>
+                    <a class="page-link" href="?page={{ page_number }}&firstdate={{ firstdate }}&seconddate={{ seconddate }}">{{ page_number }}</a>
             </li>
             {% endif %}
         {% endfor %}

@@ -45,8 +45,8 @@ def interparkdatefilter(request):
 
     paginator = Paginator(customer_list, 10)  # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
-    name = {'Customer_list': page_obj, 'page': page}
-    return render(request, 'interpark/interpark_list.html', name)
+    context = {'Customer_list': page_obj, 'page': page, 'firstdate':firstdate, 'seconddate':seconddate}
+    return render(request, 'interpark/interpark_list.html', context,)
     # return HttpResponse("firstDate" + firstdate + "secondDate" + seconddate)
     #
     #
