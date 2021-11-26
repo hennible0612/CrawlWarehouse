@@ -62,7 +62,7 @@ def interparkdatefilter(request):
 
 
 @login_required(login_url='common:login')
-def interparkcustomerdetail(request, customer_id): #href로 이 view 부를때 인자도 같이 받는다.
+def interparkcustomerdetail(request, customer_id): #href로 이 view 부를때 인자도 같이 받는다.   ******** 나중에 이걸로 내가 어느몰에 있는지 확인해야할듯
     """
     detail 출력
     """

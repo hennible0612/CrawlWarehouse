@@ -45,19 +45,20 @@
         <!-- 이전페이지 -->
         {% if Customer_list.has_previous %} <!-- 이전 페이지가 있는지 체크-->
         <li class="page-item">
-            <a class="page-link" href="?page={{ Customer_list.previous_page_number }}">이전</a>
+            <a class="page-link" href="?page={{ Customer_list.previous_page_number }}">이전</a> <!--이전 페이지 있으면 이전페이지 이전 버튼 활성화 -->
             <!-- 기존 ?page=1에서 값을 읽어 폼에 설정할 수있도록 아래처럼 변경 -->
         </li>
         {% else %}
         <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a> <!-- 없으면 비활성화 -->
         </li>
         {% endif %}
+
+
         <!-- 페이지리스트 -->
         {% for page_number in Customer_list.paginator.page_range %}
-        {% if page_number >= Customer_list.number|add:-5 and page_number <= Customer_list.number|add:5 %} <!--페이지수의 페이지수 조절 -->
             {% if page_number == Customer_list.number %}
-            <li class="page-item active" aria-current="page">
+            <li class="page-item active" aria-current="page"> <!-- 현재페이지와 같으면 해당하는 링크 보여줌 -->
 
                 <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
             </li>
@@ -66,8 +67,9 @@
                 <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
             </li>
             {% endif %}
-        {% endif %}
         {% endfor %}
+
+
         <!-- 다음페이지 -->
         {% if Customer_list.has_next %}
         <li class="page-item">
@@ -86,18 +88,18 @@
 {#{% endif %}#}
 {% endblock %}
 {% block script %}
-<script type='text/javascript'>
-$(document).ready(function(){
-    $(".page-link").on('click', function() {
-        $("#page").val($(this).data("page"));
-        $("#searchForm").submit();
-    });
-
-    $("#btn_search").on('click', function() {
-        $("#kw").val($(".kw").val());
-        $("#page").val(1);  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
-        $("#searchForm").submit();
-    });
-});
-</script>
+{#<script type='text/javascript'>#}
+{#$(document).ready(function(){#}
+{#    $(".page-link").on('click', function() {#}
+{#        $("#page").val($(this).data("page"));#}
+{#        $("#searchForm").submit();#}
+{#    });#}
+{##}
+{#    $("#btn_search").on('click', function() {#}
+{#        $("#kw").val($(".kw").val());#}
+{#        $("#page").val(1);  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.#}
+{#        $("#searchForm").submit();#}
+{#    });#}
+{#});#}
+{#</script>#}
 {% endblock %}
