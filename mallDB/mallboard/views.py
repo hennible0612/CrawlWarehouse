@@ -101,8 +101,19 @@ import csv
 
 
 @login_required(login_url='common:login')
-def getneworder(request):
-    print(request)
-    # addInterpark.addInterpark()
+def getneworder(request, mall_name):
+    if (mall_name =="coupang"):
+        print("couapng")
+        return HttpResponse("coupang")
+    elif (mall_name=="interpark"):
+        print("interpark")
+        return HttpResponse("interpark")
+    else:
+        print("err 원하는거 못잡음")
+        return HttpResponse("원하는거 못잡음")
 
-    return interpark(request)
+    #
+    # print(request)
+    # # addInterpark.addInterpark()
+    #
+    # return interpark(request)

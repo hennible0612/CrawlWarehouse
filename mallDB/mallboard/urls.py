@@ -18,5 +18,7 @@ urlpatterns = [
 
     path('mallboard/interparkdatefilter', views.interparkdatefilter, name='interparkdatefilter'),
 
-    path('mallboard/getneworder/',views.getneworder, name="getneworder")
+    #<str: ... > <int:...>
+    # path('mallboard/getneworder/',views.getneworder, name="getneworder")
+    path('mallboard/getneworder/<str:mall_name>',views.getneworder, name="getneworder")
 ]
