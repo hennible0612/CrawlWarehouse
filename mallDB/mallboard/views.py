@@ -3,10 +3,12 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Coupang, Interpark #쿠팡 모델 가져옴
 from django.core.paginator import Paginator
-
-
-
+import sys
 from .myfunction import addInterpark
+import os
+os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+from CrawlWebsite.crawlwarehouse import crawlInterpark
+
 
 
 @login_required(login_url='common:login')
@@ -29,7 +31,7 @@ def interpark(request):
 
     # https://wikidocs.net/71240
 
-    context = {'Customer_list': page_obj, 'target_url': 'coupang'} #Customer_list로 page_obj를 보냄 즉, 템플릿에서는 {{Customer_list.id}}로 객체 접근
+    context = {'Customer_list': page_obj, 'target_url': 'interpark'} #Customer_list로 page_obj를 보냄 즉, 템플릿에서는 {{Customer_list.id}}로 객체 접근
 
     return render(request, 'interpark/interpark_list.html',context) #그리고
 
@@ -103,19 +105,21 @@ import csv
 @login_required(login_url='common:login')
 def getneworder(request, mall_name):
 
-
     if (mall_name =="coupang"):
         print("couapng")
         return HttpResponse("coupang")
     elif (mall_name=="interpark"):
         print("interpark")
-        return HttpResponse("interpark")
+        crawlInterpark.crawlInterpark()
+        addInterpark.addInterpark()
+
+        return interpark(request)
     else:
         print("err 원하는거 못잡음")
         return HttpResponse("원하는거 못잡음")
 
     #
     # print(request)
-    # # addInterpark.addInterpark()
+    # #
     #
-    # return interpark(request)
+    #
