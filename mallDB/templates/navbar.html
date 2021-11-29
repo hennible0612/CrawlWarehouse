@@ -19,8 +19,9 @@
             <li class="nav-item"><a class="nav-link" href="#">위맵</a></li>
             <li class="nav-item"><a class="nav-link" href="#">11번가</a></li>
             <li class="nav-item"><a class="nav-link" href="#">카카오</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'mallboard:getneworder' 'interpark' %}"><b>신규주문조회</b></a></li>
-
+            {% if target_url %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'mallboard:getneworder' target_url %}"><b>신규주문조회</b></a></li>
+            {% endif %}
             <li class="nav-item">
                 {% include "datepicker.html" %}
             </li>
@@ -37,6 +38,7 @@
     function change_mall(new_mall) {
         {#alert('change_mall to :'+new_mall)#}
          mall = new_mall
+        document.getElementById("new-order")
     }
     function get_mall() {
         {#alert(mall)#}

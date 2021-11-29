@@ -29,7 +29,7 @@ def interpark(request):
 
     # https://wikidocs.net/71240
 
-    context = {'Customer_list': page_obj} #Customer_list로 page_obj를 보냄 즉, 템플릿에서는 {{Customer_list.id}}로 객체 접근
+    context = {'Customer_list': page_obj, 'target_url': 'coupang'} #Customer_list로 page_obj를 보냄 즉, 템플릿에서는 {{Customer_list.id}}로 객체 접근
 
     return render(request, 'interpark/interpark_list.html',context) #그리고
 
@@ -102,6 +102,8 @@ import csv
 
 @login_required(login_url='common:login')
 def getneworder(request, mall_name):
+
+
     if (mall_name =="coupang"):
         print("couapng")
         return HttpResponse("coupang")
