@@ -8,6 +8,7 @@
         <thead>
             <tr class="thead-dark">
                 <th>ID</th>
+                <th>몰</th>
                 <th>주문자</th>
                 <th>받는 사람</th>
                 <th>전화번호</th>
@@ -23,6 +24,7 @@
                     <!-- 페이징 처리할때 페이지목록이 10개이상 넘어가면 5개 단위로 짜름-->
                     {{ Customer_list.paginator.count|sub:Customer_list.start_index|sub:forloop.counter0|add:1 }}
                 </td>
+                <td>{{ customer.mallName }} </td>
                 <td>
                     <a href="{% url 'mallboard:interparkcustomerdetail' customer.id %}">{{ customer.customerName }}</a> <!-- interparkcustomerdetail view가 인자로 customer.id를 받는다. -->
                 </td>

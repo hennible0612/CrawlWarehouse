@@ -47,6 +47,7 @@ class Coupang(models.Model):
     customerCellNum = models.IntegerField()
     safeNumber = models.IntegerField()
     safeNumberSrl = models.TextField(max_length=255)
+    mallName = models.TextField(max_length=255,default='쿠팡')
 
     def __str__(self):
         return " 주문자 : "+self.customerName + " 주소  : " + self.recipientAddress
@@ -132,6 +133,7 @@ class Interpark(models.Model):
     postCode = models.TextField(max_length=255)
     zipNo = models.TextField(max_length=255)
     zipNoDoro = models.TextField(max_length=255)
+    mallName = models.TextField(max_length=255,default='인터파크')
 
     def __str__(self):
         return " 주문자 : "+self.customerName + " 주소  : " + self.recipientAddress

@@ -74,6 +74,8 @@ def createDf(customer_data, length):
     df = pd.DataFrame(customerList, columns=column_name)
     df = df.drop(df.columns[i], axis=1)
     df = df.drop('del',axis=1)
+    df['mallName'] = "쿠팡"
+
     createCsv(df)
 
 def createCsv(df):

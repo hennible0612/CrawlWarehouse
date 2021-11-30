@@ -92,6 +92,7 @@ def createDf(customer_data, length):
             df = df.append(customer_data["data"]["orders"][i+1], ignore_index=True)
     df.columns = column_name
     # df = df.drop('del',axis=1)
+    df['mallName'] = "인터파크"
 
     createCsv(df)
 

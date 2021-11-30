@@ -41,7 +41,7 @@ def addInterpark():
                           residentNo=row["residentNo"] ,rowNum=row["rowNum"] ,unitSoldTotal=row["unitSoldTotal"]
                           ,specialYn=row["specialYn"] ,todayDelvYn=row["todayDelvYn"],
                           totalFee=row["totalFee"] ,totalPrice=row["totalPrice"] ,totalRecCnt=row["totalRecCnt"], zipAddr=row["zipAddr"] ,zipAddrDoro=row["zipAddrDoro"] ,postCode=row["postCode"],
-                          zipNo=row["zipNo"] ,zipNoDoro=row["zipNoDoro"]
+                          zipNo=row["zipNo"] ,zipNoDoro=row["zipNoDoro"],mallName=row["mallName"]
 
 
                           )
