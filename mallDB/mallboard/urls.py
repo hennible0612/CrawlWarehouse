@@ -10,12 +10,11 @@ urlpatterns = [
 
 
     path('coupang/', views.coupang, name='coupang'),
-    path('coupang/<int:customer_id>/',views.customerdetail, name='customerdetail'),
+    path('coupang/<int:customer_id>/',views.coupangcustomerdetail, name='coupangcustomerdetail'),
 
 
     path('interpark/', views.interpark, name='interpark'),
     path('interpark/<int:customer_id>/', views.interparkcustomerdetail, name='interparkcustomerdetail'),
-
     path('mallboard/interparkdatefilter', views.interparkdatefilter, name='interparkdatefilter'),
 
     #<str: ... > <int:...>

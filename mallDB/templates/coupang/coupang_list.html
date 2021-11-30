@@ -15,7 +15,7 @@
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>
-                    <a href="{% url 'mallboard:customerdetail' customer.id %}">{{ customer.customerName }}</a>
+                    <a href="{% url 'mallboard:coupangcustomerdetail' customer.id %}">{{ customer.customerName }}</a>
                 </td>
                 <td> {{ customer.customerPhoneNum }}</td>
             </tr>

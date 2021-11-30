@@ -12,3 +12,9 @@ CrawlWebsite/interpark.txt
 CrawlWebsite/coupang.txt
 
 *.csv
+
+*.txt
+
+mallDB/mallboard/myfunction/crawlwarehouse/columnname.py
+
+mallDB/mallboard/myfunction/crawlwarehouse/chromedriver.exe
