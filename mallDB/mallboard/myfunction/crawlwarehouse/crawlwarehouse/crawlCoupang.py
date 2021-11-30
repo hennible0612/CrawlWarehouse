@@ -105,6 +105,7 @@ def createDf(customer_data, length):
 
     df.columns = column_name
     createCsv(df)
+    df['mallName'] = "쿠팡"
 
     #dfList 먼저 후 dfDict
     df = df.drop('del', axis=1) # del 삭제

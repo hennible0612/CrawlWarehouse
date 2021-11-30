@@ -74,10 +74,17 @@ def createDf(customer_data, length):
     df = pd.DataFrame(customerList, columns=column_name)
     df = df.drop(df.columns[i], axis=1)
     df = df.drop('del',axis=1)
-    df['mallName'] = "쿠팡"
+
+    #orderDate 추가
+    date = pd.DataFrame(df, columns=['orderDate'])
+    df['orderDate'] = date['paidDate'].map(extract_date)
+    #mall name추가
+    df['mallName'] = "ESM"
 
     createCsv(df)
 
 def createCsv(df):
     df.to_csv(userinfo.path + 'esm.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
 
+def extract_date(row):
+    return row.split(' ')[0]

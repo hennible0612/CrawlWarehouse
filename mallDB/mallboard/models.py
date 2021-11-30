@@ -52,6 +52,9 @@ class Coupang(models.Model):
     def __str__(self):
         return " 주문자 : "+self.customerName + " 주소  : " + self.recipientAddress
 
+    class Meta:
+       ordering = ['-id']
+
 class Interpark(models.Model):
     orderDate = models.DateField()
     recipientAddress = models.TextField(max_length=255)
@@ -140,3 +143,17 @@ class Interpark(models.Model):
 
     class Meta:
        ordering = ['-id']
+
+class Esm(models.Model):
+
+
+
+
+
+
+
+    def __str__(self):
+        return " 주문자 : " + self.customerName + " 주소  : " + self.recipientAddress
+
+    class Meta:
+        ordering = ['-id']

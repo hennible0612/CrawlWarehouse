@@ -25,7 +25,6 @@ def interpark(request):
     customer_list = Interpark.objects.order_by('-id')
     paginator = Paginator(customer_list, 10)  #customer_list를 가져와 10개로 나누고 paginator에 넣음
     page_obj = paginator.get_page(page) #paginator를 사용하여 요청된 객체들에 대한 페이징 객체를 만들고, 데이터 전체를 조회하지 않고 해당 페이지의 데이터만 조회하도록 쿼리가 변경된다. {{객체.속성}}
-    # https://wikidocs.net/71240
     context = {'Customer_list': page_obj, 'target_url': 'interpark'} #Customer_list로 page_obj를 보냄 즉, 템플릿에서는 {{Customer_list.id}}로 객체 접근
 
     return render(request, 'interpark/interpark_list.html',context) #그리고
@@ -33,6 +32,9 @@ def interpark(request):
 @login_required(login_url='common:login')
 def interparkdatefilter(request):
 
+    """
+    인터파크 날짜 필터
+    """
     firstdate = request.GET.get('firstdate')
     seconddate = request.GET.get('seconddate')
     page = request.GET.get('page', '1')
@@ -43,23 +45,11 @@ def interparkdatefilter(request):
     page_obj = paginator.get_page(page)
     context = {'Customer_list': page_obj, 'page': page, 'firstdate':firstdate, 'seconddate':seconddate}
     return render(request, 'interpark/interpark_list.html', context,)
-    # return HttpResponse("firstDate" + firstdate + "secondDate" + seconddate)
-    #
-    #
-    # page = request.GET.get('page', '1')
-    # firstdate = request.POST['firstdate']
-    # seconddate = request.POST['seconddate']
-    # customer_list = Interpark.objects.filter(orderDate__range=[firstdate, seconddate])
-    #
-    # paginator = Paginator(customer_list, 10)  # 페이지당 10개씩 보여주기
-    # page_obj = paginator.get_page(page)
-    # name = {'Customer_list': page_obj, 'page': page}
-    # return render(request, 'interpark/interpark_list.html', name)
 
 @login_required(login_url='common:login')
 def interparkcustomerdetail(request, customer_id): #href로 이 view 부를때 인자도 같이 받는다.   ******** 나중에 이걸로 내가 어느몰에 있는지 확인해야할듯
     """
-    detail 출력
+    인터파크 detail 출력
     """
     customer = get_object_or_404(Interpark, pk=customer_id)
     # customer = Coupang.objects.get(id=customer_id)
@@ -71,11 +61,17 @@ def coupang(request):
     """
     coupang 주문 목록 출력
     """
-
+    page = request.GET.get('page', '1') #?으로 뒤에 딸려온거 get ?이 없을경우 default 로 1
     customer_list = Coupang.objects.order_by('id')
-    name = {'Customer_list': customer_list}
-    # return HttpResponse("Coupang에 오신것을 환영합니다.")
-    return render(request, 'coupang/coupang_list.html',name)
+    paginator = Paginator(customer_list, 10)  #customer_list를 가져와 10개로 나누고 paginator에 넣음
+    page_obj = paginator.get_page(page) #paginator를 사용하여 요청된 객체들에 대한 페이징 객체를 만들고, 데이터 전체를 조회하지 않고 해당 페이지의 데이터만 조회하도록 쿼리가 변경된다. {{객체.속성}}
+    context = {'Customer_list': page_obj, 'target_url': 'coupang'} #Customer_list로 page_obj를 보냄 즉, 템플릿에서는 {{Customer_list.id}}로 객체 접근
+
+
+    # customer_list = Coupang.objects.order_by('id')
+    # name = {'Customer_list': customer_list}
+    # # return HttpResponse("Coupang에 오신것을 환영합니다.")
+    return render(request, 'coupang/coupang_list.html',context)
 
 @login_required(login_url='common:login')
 def coupangcustomerdetail(request, customer_id):

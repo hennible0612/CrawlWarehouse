@@ -93,16 +93,21 @@ def createDf(customer_data, length):
     df.columns = column_name
     # df = df.drop('del',axis=1)
 
+    #orderdate 추가
+    date = pd.DataFrame(df, columns=['paidDate'])
+    df['orderDate'] = date['paidDate'].map(extract_date)
+
     #mallName 추가
     df['mallName'] = "인터파크"
+
     createCsv(df)
 
 def createCsv(df):
     df.to_csv(userinfo.path +'interpark.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
     return True
 
-
-
+def extract_date(row):
+    return row.split('T')[0]
 
 
 
