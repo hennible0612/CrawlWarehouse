@@ -21,6 +21,9 @@ urlpatterns = [
     path('esm/', views.esm, name='esm'),
     path('esm/<int:customer_id>/', views.esmcustomerdetail, name='esmcustomerdetail'),
 
+    #Tmon url
+    path('tmon/', views.tmon, name='tmon'),
+    path('tmon/<int:customer_id>/', views.tmoncustomerdetail, name='tmoncustomerdetail'),
 
     #<str: ... > <int:...>
     # path('mallboard/getneworder/',views.getneworder, name="getneworder")

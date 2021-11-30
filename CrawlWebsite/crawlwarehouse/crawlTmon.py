@@ -81,8 +81,15 @@ def createDf(customer_data, length):
     df = pd.DataFrame(customerList, columns=column_name)
     df = df.drop('del',axis=1)
 
+    date = pd.DataFrame(df, columns=['orderPaymentCompleteDate'])
+    df['orderDate'] = date['orderPaymentCompleteDate'].map(extract_date)
+
+    df['mallName'] = "티몬"
     # df = pd.DataFrame(customerList)
     createCsv(df)
 #
 def createCsv(df):
     df.to_csv(userinfo.path +'tmon.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+
+def extract_date(row):
+    return row.split(' ')[0]

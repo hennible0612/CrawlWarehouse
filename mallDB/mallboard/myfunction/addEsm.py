@@ -4,7 +4,6 @@ from mallboard.models import Esm
 
 import csv
 def addEsm():
-
     with open('esm.csv', encoding='UTF8') as csvfile:
         print("addEsm() 실행")
         reader = csv.DictReader(csvfile)

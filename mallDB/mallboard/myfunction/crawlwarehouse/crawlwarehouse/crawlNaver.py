@@ -2,7 +2,8 @@ from time import sleep
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
-import get_browser, columnname, userinfo
+from .common import userinfo, columnname, get_browser
+
 
 stack = 0
 

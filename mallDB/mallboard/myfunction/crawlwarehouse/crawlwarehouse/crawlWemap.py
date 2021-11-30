@@ -4,7 +4,8 @@ import pandas as pd
 import re
 import datetime as dt
 import json
-import get_browser, columnname, userinfo
+from .common import userinfo, columnname, get_browser
+
 
 stack = 0
 def crawlWemap():

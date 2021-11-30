@@ -5,8 +5,9 @@ from bs4 import BeautifulSoup
 import datetime as dt
 import pandas as pd
 import re
-import get_browser, columnname, userinfo
-import columnname
+from .common import userinfo, columnname, get_browser
+
+
 stack = 0
 
 def crawlCoupang():

@@ -7,5 +7,5 @@ import crawlEleven
 # crawlInterpark.crawlInterpark()
 # crawlWemap.crawlWemap()
 # crawlCoupang.crawlCoupang()
-# crawlTmon.crawlTmon()
-crawlKakao.crawlKakao()
+crawlTmon.crawlTmon()
+# crawlKakao.crawlKakao()

@@ -200,3 +200,57 @@ class Esm(models.Model):
 
     class Meta:
         ordering = ['-id']
+
+class Tmon(models.Model):
+    check = models.TextField(max_length=255)
+    optionNumber  = models.TextField(max_length=255)
+    orderNum  = models.TextField(max_length=255)
+    shippingCompany  = models.TextField(max_length=255)
+    shippingNum  = models.TextField(max_length=255)
+    expectShipDate  = models.TextField(max_length=255)
+    orderDeadLine  = models.TextField(max_length=255)
+    delayedDate  = models.TextField(max_length=255)
+    delayReason  = models.TextField(max_length=255)
+    delayReasonDetail  = models.TextField(max_length=255)
+    finalDelayDate = models.TextField(max_length=255)
+    trackNumApplyDate = models.TextField(max_length=255)
+    sellerCode = models.TextField(max_length=255)
+    customerName = models.TextField(max_length=255)
+    customerId = models.TextField(max_length=255)
+    customerCellNum = models.TextField(max_length=255)
+    productName = models.TextField(max_length=255)
+    orderOption = models.TextField(max_length=255)
+    unitPrice = models.IntegerField()
+    orderAmount = models.IntegerField()
+    unitSold = models.IntegerField()
+    orderPaymentCompleteDate = models.TextField(max_length=255)
+    orderRequirementsOne = models.TextField(max_length=255)
+    recipientName = models.TextField(max_length=255)
+    recipientCustomsInfo = models.TextField(max_length=255)
+    recipientPhoneNum = models.TextField(max_length=255)
+    recipientAddress = models.TextField(max_length=255)
+    postCode = models.TextField(max_length=255)
+    orderRequirements = models.TextField(max_length=255)
+    shipmentState = models.TextField(max_length=255)
+    shipmentDate = models.TextField(max_length=255)
+    shipmentArriveDate = models.TextField(max_length=255)
+    partnerCodeOne = models.TextField(max_length=255)
+    partnerCodeTwo = models.TextField(max_length=255)
+    partnerCodeThree = models.TextField(max_length=255)
+    partnerCodeFour = models.TextField(max_length=255)
+    partnerCodeFive = models.TextField(max_length=255)
+    optionNumberOne = models.TextField(max_length=255)
+    remoteAreaDelivery = models.TextField(max_length=255)
+    remoteAreaDeliveryFee = models.IntegerField()
+    shippingFeePayment = models.TextField(max_length=255)
+    shippingFee = models.IntegerField()
+    shipping = models.TextField(max_length=255)
+    shippingType = models.TextField(max_length=255)
+    orderDate = models.DateField()
+    mallName = models.TextField(max_length=255,default='티몬')
+
+    def __str__(self):
+        return " 주문자 : " + self.customerName + " 주소  : " + self.recipientAddress
+
+    class Meta:
+        ordering = ['-id']
