@@ -11,7 +11,8 @@ def get_browser():
 
     options.add_argument('headless') #headless
     chrom_path = r"C:\Users\henni\Desktop\CrawlWarehouse\mallDB\mallboard\myfunction\crawlwarehouse\crawlwarehouse\common\chromedriver.exe"
-    browser = webdriver.Chrome(chrom_path, chrome_options=options)
+    # browser = webdriver.Chrome(chrom_path, chrome_options=options)
+    browser = webdriver.Chrome(chrom_path)
     # browser = webdriver.Chrome(chrome_options=options)
     #firefox = webdriver.Firefox()
     return browser

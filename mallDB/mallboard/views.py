@@ -3,11 +3,11 @@ from time import sleep
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Coupang, Interpark, Esm,Tmon #쿠팡 모델 가져옴
+from .models import Coupang, Interpark, Esm,Tmon, Naver #쿠팡 모델 가져옴
 from django.core.paginator import Paginator
 import sys
-from .myfunction import addInterpark, addEsm,addCoupang, addTmon
-from .myfunction.crawlwarehouse.crawlwarehouse import crawlInterpark, crawlEsm, crawlCoupang, crawlTmon
+from .myfunction import addInterpark, addEsm,addCoupang, addTmon, addNaver
+from .myfunction.crawlwarehouse.crawlwarehouse import crawlInterpark, crawlEsm, crawlCoupang, crawlTmon, crawlNaver
 
 
 
@@ -143,8 +143,31 @@ def tmoncustomerdetail(request, customer_id): #href로 이 view 부를때 인자
     customer = get_object_or_404(Tmon, pk=customer_id)
     context = {'customer': customer} # ' ' 사이에있는 이름으로 html에서 접근해야함
     return render(request,'tmon/tmon_customer_detail.html',context)
+"""
+Naver
+"""
+@login_required(login_url='common:login')
+def naver(request):
+    """
+    tmon 주문 목록 출력
+    """
+    # 입력 파라미터
+    page = request.GET.get('page', '1') #?으로 뒤에 딸려온거 get ?이 없을경우 default 로 1
+    customer_list = Naver.objects.order_by('-id')
+    paginator = Paginator(customer_list, 10)  #customer_list를 가져와 10개로 나누고 paginator에 넣음
+    page_obj = paginator.get_page(page) #paginator를 사용하여 요청된 객체들에 대한 페이징 객체를 만들고, 데이터 전체를 조회하지 않고 해당 페이지의 데이터만 조회하도록 쿼리가 변경된다. {{객체.속성}}
+    context = {'Customer_list': page_obj, 'target_url': 'naver'} #Customer_list로 page_obj를 보냄 즉, 템플릿에서는 {{Customer_list.id}}로 객체 접근
 
+    return render(request, 'naver/naver_list.html',context) #그리고
 
+@login_required(login_url='common:login')
+def navercustomerdetail(request, customer_id): #href로 이 view 부를때 인자도 같이 받는다.   ******** 나중에 이걸로 내가 어느몰에 있는지 확인해야할듯
+    """
+    tmon detail 출력
+    """
+    customer = get_object_or_404(Naver, pk=customer_id)
+    context = {'customer': customer} # ' ' 사이에있는 이름으로 html에서 접근해야함
+    return render(request,'naver/naver_customer_detail.html',context)
 
 @login_required(login_url='common:login')
 def getneworder(request, mall_name):
@@ -184,7 +207,11 @@ def getneworder(request, mall_name):
         #     print("주문있음")
         #     # addEsm.addEsm()
         #     return HttpResponse("신규주문 O") #tmon(request)
-
+    elif(mall_name=="naver"):
+        print("naver")
+        crawlNaver.crawlNaver()
+        addNaver.addNaver()
+        return naver(request)
     else:
         print("err 원하는거 못잡음")
         return HttpResponse("원하는거 못잡음")

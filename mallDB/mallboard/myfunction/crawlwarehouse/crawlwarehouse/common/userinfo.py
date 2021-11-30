@@ -28,7 +28,7 @@ wemap_pw = "muhan3378"
 
 #네이버
 naver_id = "jdwnhn@naver.com"
-naver_pw = "muhan337*9"
+naver_pw = "muhan3378("
 
 #카카오
 kakao_id = "nscreenofficial@kakao.com"

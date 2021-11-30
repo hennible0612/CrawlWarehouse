@@ -25,6 +25,10 @@ urlpatterns = [
     path('tmon/', views.tmon, name='tmon'),
     path('tmon/<int:customer_id>/', views.tmoncustomerdetail, name='tmoncustomerdetail'),
 
+    #Naver url
+    path('naver/', views.naver, name='naver'),
+    path('naver/<int:customer_id>/', views.navercustomerdetail, name='navercustomerdetail'),
+
     #<str: ... > <int:...>
     # path('mallboard/getneworder/',views.getneworder, name="getneworder")
     path('mallboard/getneworder/<str:mall_name>',views.getneworder, name="getneworder")

@@ -95,3 +95,4 @@ def createCsv(df):
 def extract_date(row):
     string = row.split('.')[0] + "-" + row.split('.')[1] + "-" + row.split('.')[2]
     return string
+
