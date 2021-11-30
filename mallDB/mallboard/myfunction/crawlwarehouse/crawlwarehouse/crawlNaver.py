@@ -80,7 +80,18 @@ def createDf(length, *args):
     df.columns = column_name
     df = df.drop('del',axis=1)
 
+
+    #orderDate 추가
+    date = pd.DataFrame(df, columns=['orderDate'])
+    df['orderDate'] = date['orderDate'].map(extract_date)
+
+    #mall name추가
+    df['mallName'] = "네이버"
     createCsv(df)
 
 def createCsv(df):
     df.to_csv(userinfo.path + 'naver.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+
+def extract_date(row):
+    string = row.split('.')[0] + "-" + row.split('.')[1] + "-" + row.split('.')[2]
+    return string

@@ -203,15 +203,15 @@ class Esm(models.Model):
 
 class Tmon(models.Model):
     check = models.TextField(max_length=255)
-    optionNumber  = models.TextField(max_length=255)
-    orderNum  = models.TextField(max_length=255)
-    shippingCompany  = models.TextField(max_length=255)
-    shippingNum  = models.TextField(max_length=255)
-    expectShipDate  = models.TextField(max_length=255)
-    orderDeadLine  = models.TextField(max_length=255)
-    delayedDate  = models.TextField(max_length=255)
-    delayReason  = models.TextField(max_length=255)
-    delayReasonDetail  = models.TextField(max_length=255)
+    optionNumber = models.TextField(max_length=255)
+    orderNum = models.TextField(max_length=255)
+    shippingCompany = models.TextField(max_length=255)
+    shippingNum = models.TextField(max_length=255)
+    expectShipDate = models.TextField(max_length=255)
+    orderDeadLine = models.TextField(max_length=255)
+    delayedDate = models.TextField(max_length=255)
+    delayReason = models.TextField(max_length=255)
+    delayReasonDetail = models.TextField(max_length=255)
     finalDelayDate = models.TextField(max_length=255)
     trackNumApplyDate = models.TextField(max_length=255)
     sellerCode = models.TextField(max_length=255)
@@ -248,6 +248,52 @@ class Tmon(models.Model):
     shippingType = models.TextField(max_length=255)
     orderDate = models.DateField()
     mallName = models.TextField(max_length=255,default='티몬')
+
+    def __str__(self):
+        return " 주문자 : " + self.customerName + " 주소  : " + self.recipientAddress
+
+    class Meta:
+        ordering = ['-id']
+
+class Naver(models.Model):
+    check = models.TextField(max_length=255)
+    orderNum = models.TextField(max_length=255)
+    orderDate = models.DateField()
+    shopSite = models.TextField(max_length=255)
+    customerName = models.TextField(max_length=255)
+    customerId = models.TextField(max_length=255)
+    recipientName = models.TextField(max_length=255)
+    shippingState = models.TextField(max_length=255)
+    orderState = models.TextField(max_length=255)
+    shopMachine = models.TextField(max_length=255)
+    orderTime = models.TextField(max_length=255)
+    productName = models.TextField(max_length=255)
+    producetState = models.TextField(max_length=255)
+    optionInfo = models.TextField(max_length=255)
+    optionSellerCode = models.TextField(max_length=255)
+    orderAmount = models.IntegerField()
+    optionPrce = models.IntegerField()
+    unitNormalPrice = models.IntegerField()
+    saleAmount = models.IntegerField()
+    sellerSaleAmount = models.IntegerField()
+    unitPrice = models.IntegerField()
+    gift = models.TextField(max_length=255)
+    shipmentDeadline = models.TextField(max_length=255)
+    shippingFeeType = models.TextField(max_length=255)
+    shippingFeeSate = models.TextField(max_length=255)
+    shippingFee = models.TextField(max_length=255)
+    remoteAreaDeliveryFee = models.IntegerField()
+    shippingSale = models.IntegerField()
+    sellerCode = models.IntegerField()
+    customerCellNum = models.TextField(max_length=255)
+    recipientAddress = models.TextField(max_length=255)
+    customerPhoneNum = models.TextField(max_length=255)
+    postCode = models.TextField(max_length=255)
+    orderRequirements = models.TextField(max_length=255)
+    payType = models.TextField(max_length=255)
+    shopMarket = models.TextField(max_length=255)
+    searchType = models.TextField(max_length=255)
+    mallName = models.TextField(max_length=255,default='네이버')
 
     def __str__(self):
         return " 주문자 : " + self.customerName + " 주소  : " + self.recipientAddress
