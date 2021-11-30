@@ -1,9 +1,10 @@
 
 from django.core.management.base import BaseCommand
 from mallboard.models import Esm
-
+import os
 import csv
 def addEsm():
+    os.chdir(r"C:\Users\henni\Desktop\CrawlWarehouse\mallDB\mallboard\myfunction")
     with open('esm.csv', encoding='UTF8') as csvfile:
         print("addEsm() 실행")
         reader = csv.DictReader(csvfile)

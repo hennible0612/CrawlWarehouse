@@ -1,8 +1,14 @@
+from time import sleep
+import os
 from mallboard.models import Tmon
+
+
 
 import csv
 def addTmon():
-    with open('tmon.csv.csv', encoding='UTF8') as csvfile:
+
+    os.chdir(r"C:\Users\henni\Desktop\CrawlWarehouse\mallDB\mallboard\myfunction")
+    with open('tmon.csv', encoding='UTF8') as csvfile:
         print("addTmon() 실행")
         reader = csv.DictReader(csvfile)
         for row in reader:

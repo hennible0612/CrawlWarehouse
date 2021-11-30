@@ -1,9 +1,11 @@
+import os
 
 from django.core.management.base import BaseCommand
 
 import csv
 from mallboard.models import Coupang
 def addCoupang():
+    os.chdir(r"C:\Users\henni\Desktop\CrawlWarehouse\mallDB\mallboard\myfunction")
     with open('coupang.csv', encoding='UTF8') as csvfile:
         print("addCoupang() 실행")
         reader = csv.DictReader(csvfile)

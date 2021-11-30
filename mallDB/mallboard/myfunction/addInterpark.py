@@ -1,8 +1,10 @@
 import csv
+import os
 
 from mallboard.models import Interpark
 
 def addInterpark():
+    os.chdir(r"C:\Users\henni\Desktop\CrawlWarehouse\mallDB\mallboard\myfunction")
     with open('interpark.csv', encoding='UTF8') as csvfile:
         print("addInterpark() 실행")
         reader = csv.DictReader(csvfile)

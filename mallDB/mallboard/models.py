@@ -241,7 +241,7 @@ class Tmon(models.Model):
     partnerCodeFive = models.TextField(max_length=255)
     optionNumberOne = models.TextField(max_length=255)
     remoteAreaDelivery = models.TextField(max_length=255)
-    remoteAreaDeliveryFee = models.IntegerField()
+    remoteAreaDeliveryFee = models.TextField(max_length=255)
     shippingFeePayment = models.TextField(max_length=255)
     shippingFee = models.IntegerField()
     shipping = models.TextField(max_length=255)

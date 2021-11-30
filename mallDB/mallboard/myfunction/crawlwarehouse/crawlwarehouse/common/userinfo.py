@@ -34,5 +34,5 @@ naver_pw = "muhan337*9"
 kakao_id = "nscreenofficial@kakao.com"
 kakao_pw = "muhan5337"
 
-path = r'C:\Users\henni\Desktop\CrawlWarehouse\mallDB\mallboard\myfunction\crawlwarehouse\csv'
+path = r'C:\Users\henni\Desktop\CrawlWarehouse\mallDB\mallboard\myfunction/'
 
