@@ -83,7 +83,7 @@ def createDf(customer_data, length):
     df = df.drop('del',axis=1)
 
     # df = pd.DataFrame(customerList)
-    createCsv(df)
+
 #
     date = pd.DataFrame(df, columns=['orderPaymentCompleteDate'])
     df['orderDate'] = date['orderPaymentCompleteDate'].map(extract_date)

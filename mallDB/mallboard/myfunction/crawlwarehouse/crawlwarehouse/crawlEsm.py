@@ -77,9 +77,11 @@ def createDf(customer_data, length):
     df = df.drop('del',axis=1)
 
     #orderDate 추가
+    # df['orderDate'] = "-"
     date = pd.DataFrame(df, columns=['orderDate'])
-    df['orderDate'] = date['paidDate'].map(extract_date)
-    #mall name추가
+    print(date)
+    df['orderDate'] = date['orderDate'].map(extract_date)
+    # #mall name추가
     df['mallName'] = "ESM"
 
     createCsv(df)

@@ -79,9 +79,21 @@ def createDf(customer_data, length):
     column_name = columnname.wemapColumnname
 
     df.columns = column_name
-    df = df.drop('del',axis=1)
+
+
+    df = df.drop('orderPaymentCompleteDate',axis=1)
+
+
+    date = pd.DataFrame(df, columns=['orderDt'])
+    df['orderDate'] = date['orderDt'].map(extract_date)
+    # df = df.drop('del',axis=1)
+
+    df['mallName'] = "위메프"
 
     createCsv(df)
 
 def createCsv(df):
     df.to_csv(userinfo.path +'Wemap.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+
+def extract_date(row):
+    return row.split(' ')[0]

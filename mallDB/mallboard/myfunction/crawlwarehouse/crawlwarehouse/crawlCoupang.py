@@ -105,11 +105,12 @@ def createDf(customer_data, length):
     column_name = columnname.coupangColumnname
 
     df.columns = column_name
-    createCsv(df)
-    df['mallName'] = "쿠팡"
 
     #dfList 먼저 후 dfDict
     df = df.drop('del', axis=1) # del 삭제
+    df['mallName'] = "쿠팡"
+
+    createCsv(df)
 
 
 def createCsv(df):
