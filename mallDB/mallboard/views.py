@@ -3,10 +3,10 @@ from time import sleep
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Coupang, Interpark, Esm,Tmon, Naver#, Wemap #쿠팡 모델 가져옴
+from .models import Coupang, Interpark, Esm,Tmon, Naver, Wemap #쿠팡 모델 가져옴
 from django.core.paginator import Paginator
 import sys
-from .myfunction import addInterpark, addEsm,addCoupang, addTmon, addNaver
+from .myfunction import addInterpark, addEsm,addCoupang, addTmon, addNaver,addWemap
 from .myfunction.crawlwarehouse.crawlwarehouse import crawlInterpark, crawlEsm, crawlCoupang, crawlTmon, crawlNaver, crawlWemap
 
 
@@ -194,7 +194,7 @@ def wemapcustomerdetail(request, customer_id): #href로 이 view 부를때 인�
     """
     customer = get_object_or_404(Wemap, pk=customer_id)
     context = {'customer': customer} # ' ' 사이에있는 이름으로 html에서 접근해야함
-    return render(request,'naver/naver_customer_detail.html',context)
+    return render(request,'wemap/wemap_customer_detail.html',context)
 
 
 
@@ -212,7 +212,6 @@ def getneworder(request, mall_name):
         crawlInterpark.crawlInterpark()
         addInterpark.addInterpark()
         return interpark(request)
-
     elif(mall_name=="esm"):
         print("esm")
         crawlEsm.crawlEsm()
@@ -234,6 +233,11 @@ def getneworder(request, mall_name):
         crawlNaver.crawlNaver()
         addNaver.addNaver()
         return naver(request)
+    elif(mall_name=="wemap"):
+        print("wemap")
+        crawlWemap.crawlWemap()
+        addWemap.addWemap()
+        return wemap(request)
     else:
         print("err 원하는거 못잡음")
         return HttpResponse("원하는거 못잡음")

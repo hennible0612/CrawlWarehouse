@@ -80,9 +80,14 @@ def createDf(customer_data, length):
     column_name = columnname.wemapColumnname
 
     df.columns = column_name
-    df = df.drop('del',axis=1)
 
+    df['orderDate'] = df['orderDate'].map(extract_date)
+
+    df['mallName'] = "위메프"
     createCsv(df)
 
 def createCsv(df):
     df.to_csv(userinfo.path +'Wemap.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+
+def extract_date(row):
+    return row.split(' ')[0]

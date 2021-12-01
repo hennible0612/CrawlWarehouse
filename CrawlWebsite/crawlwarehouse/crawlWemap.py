@@ -81,12 +81,7 @@ def createDf(customer_data, length):
     df.columns = column_name
 
 
-    df = df.drop('orderPaymentCompleteDate',axis=1)
-
-
-    date = pd.DataFrame(df, columns=['orderDt'])
-    df['orderDate'] = date['orderDt'].map(extract_date)
-    # df = df.drop('del',axis=1)
+    df['orderDate'] = df['orderDate'].map(extract_date)
 
     df['mallName'] = "위메프"
 

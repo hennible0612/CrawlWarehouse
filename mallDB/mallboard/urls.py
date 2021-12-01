@@ -29,7 +29,7 @@ urlpatterns = [
     path('naver/', views.naver, name='naver'),
     path('naver/<int:customer_id>/', views.navercustomerdetail, name='navercustomerdetail'),
 
-    # Naver url
+    # Wemap url
     path('wemap/', views.wemap, name='wemap'),
     path('wemap/<int:customer_id>/', views.wemapcustomerdetail, name='wemapcustomerdetail'),
 

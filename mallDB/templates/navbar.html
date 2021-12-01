@@ -16,7 +16,7 @@
             <li class="nav-item"><a class="nav-link" onclick="change_mall('esm');" href="{% url 'mallboard:esm' %}">ESM</a></li>
             <li class="nav-item"><a class="nav-link" onclick="change_mall('naver');" href="{% url 'mallboard:naver'%}">네이버</a></li>
             <li class="nav-item"><a class="nav-link" onclick="change_mall('tmon');" href="{% url 'mallboard:tmon' %}">티몬</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">위맵</a></li>
+            <li class="nav-item"><a class="nav-link" onclick="change_mall('wemap');" href="{% url 'mallboard:wemap' %}">위맵</a></li>
             <li class="nav-item"><a class="nav-link" href="#">11번가</a></li>
             <li class="nav-item"><a class="nav-link" href="#">카카오</a></li>
             {% if target_url %}
