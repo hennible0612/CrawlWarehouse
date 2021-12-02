@@ -213,10 +213,15 @@ def getneworder(request, mall_name):
         addInterpark.addInterpark()
         return interpark(request)
     elif(mall_name=="esm"):
-        print("esm")
-        crawlEsm.crawlEsm()
-        addEsm.addEsm()
-        return esm(request)
+        boolone = crawlEsm.crawlEsm()
+        print(boolone)
+        if (boolone == False):
+            return HttpResponse("1원하는거 못잡음")
+            # return esm(request)
+        elif(boolone == True):
+            addEsm.addEsm()
+            return HttpResponse("2원하는거 못잡음")
+            # return esm(request)
     elif(mall_name=="tmon"):
         print("tmon")
         crawlTmon.crawlTmon()

@@ -9,7 +9,7 @@ def addEsm():
         print("addEsm() 실행")
         reader = csv.DictReader(csvfile)
         for row in reader:
-            print(row)
+            # print(row)
             p = Esm(
             orderDate =row["orderDate"],
             customerId=row["customerId"],

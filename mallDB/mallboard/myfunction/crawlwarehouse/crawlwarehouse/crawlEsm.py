@@ -53,6 +53,7 @@ def getData(soup):
     total_order = re.sub(r'[^0-9]', '', str(ordernum))
     if (int(total_order) == 0):
         print('ESM 주문 0건')
+        boolOrder(False)
     else:
         print('ESM 총주문 개수는 : ', total_order)
         customer_data = soup.select_one('tbody.sb-grid-results')  # 결과
@@ -88,6 +89,19 @@ def createDf(customer_data, length):
 
 def createCsv(df):
     df.to_csv(userinfo.path + 'esm.csv', index=True, header=True, na_rep='-', encoding='utf-8-sig')
+    boolOrder(True)
 
 def extract_date(row):
     return row.split(' ')[0]
+
+def boolOrder(bool):
+    print("boolOrder 실행")
+    if(bool==False):
+        print(bool)
+        print(":::False")
+
+        return 0
+    else:
+        print(":::True")
+        return 1
+
