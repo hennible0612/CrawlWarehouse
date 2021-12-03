@@ -81,7 +81,7 @@ class Interpark(models.Model):
     expectedSettlementAmt = models.IntegerField()
     sellerCode = models.IntegerField()
     externalPrdNo = models.IntegerField()
-    feeRate = models.IntegerField()
+    feeRate = models.TextField(max_length=255)
     hdelvMafcEntrNoDefault = models.IntegerField()
     inpkCouponDiscountAmount = models.IntegerField()
     interestFreeFee = models.IntegerField()
